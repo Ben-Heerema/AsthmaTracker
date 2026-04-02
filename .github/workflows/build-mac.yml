@@ -26,7 +26,7 @@ jobs:
         run: node generate-placeholder-videos.js
 
       - name: Build macOS DMG
-        run: npm run build:mac
+        run: npx electron-builder --mac --publish never
 
       - name: Upload DMG artifact
         uses: actions/upload-artifact@v4
