@@ -1,0 +1,272 @@
+/**
+ * medication-inventory.css
+ */
+
+body {
+  background: linear-gradient(160deg, #E3F2FD 0%, #E0F7FA 100%);
+  margin: 0;
+  padding: 0;
+}
+
+.page-header {
+  background: linear-gradient(90deg, #1565C0, #0288D1);
+}
+
+/* Add New button in header */
+.header-action-btn {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: background 0.15s;
+}
+.header-action-btn:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+/* Outer wrapper */
+.inv-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 28px 20px 60px;
+  min-height: calc(100vh - 60px);
+  box-sizing: border-box;
+}
+
+/* White card */
+.inv-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.13), 0 4px 10px rgba(0,0,0,0.09);
+  padding: 28px 28px 32px;
+  width: 580px;
+  flex-shrink: 0;
+}
+
+/* Section count label */
+.list-section-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #1565C0;
+  margin-bottom: 12px;
+}
+
+/* ── Medication bar ── */
+.med-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #F8FAFF;
+  border: 2px solid #E8EEF8;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+.med-bar:hover {
+  border-color: #90CAF9;
+  background: #EEF6FF;
+}
+.med-bar:focus-visible {
+  outline: 2px solid #1976D2;
+  outline-offset: 2px;
+}
+.med-bar.selected {
+  border-color: #2196F3;
+  background: #E3F2FD;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0;
+}
+
+/* Left: icon + name + type badge */
+.med-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.med-bar-icon { font-size: 1.375rem; flex-shrink: 0; }
+.med-bar-name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #212121;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.med-type-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+.med-type-badge.controller { background: #E3F2FD; color: #1565C0; }
+.med-type-badge.rescue     { background: #FFF3E0; color: #E65100; }
+
+/* Right: child name + warning + chevron */
+.med-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.med-bar-child {
+  font-size: 0.8125rem;
+  color: #757575;
+  font-weight: 500;
+}
+.med-bar-warning { font-size: 0.9375rem; }
+.med-bar-chevron {
+  font-size: 0.75rem;
+  color: #9E9E9E;
+  transition: transform 0.2s;
+}
+.med-bar.selected .med-bar-chevron { transform: rotate(180deg); }
+
+/* ── Detail panel ── */
+.med-detail-panel {
+  background: white;
+  border: 2px solid #2196F3;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.med-detail-body {
+  padding: 16px 18px;
+}
+
+/* Stats grid */
+.med-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.med-stat {
+  background: #F8FAFF;
+  border: 1px solid #DDEEFF;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.med-stat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #9E9E9E;
+  margin-bottom: 4px;
+}
+.med-stat-value {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #212121;
+}
+.med-stat-value.expired       { color: #C62828; }
+.med-stat-value.expiring-soon { color: #E65100; }
+.med-stat-value.low-doses     { color: #E65100; }
+
+.med-child-row {
+  font-size: 0.8125rem;
+  color: #757575;
+  margin-bottom: 10px;
+}
+.med-notes {
+  font-size: 0.8125rem;
+  color: #757575;
+  font-style: italic;
+  background: #F8FAFF;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+/* Action row: edit + toggle side by side */
+.med-action-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* Edit button */
+.med-edit-btn {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #BBDEFB;
+  border-radius: 8px;
+  background: white;
+  color: #1565C0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+.med-edit-btn:hover {
+  background: #2196F3;
+  border-color: #2196F3;
+  color: white;
+}
+
+/* Toggle active/inactive button */
+.med-toggle-btn {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #FFCDD2;
+  border-radius: 8px;
+  background: white;
+  color: #C62828;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+.med-toggle-btn:hover {
+  background: #C62828;
+  border-color: #C62828;
+  color: white;
+}
+.med-toggle-btn.reactivate {
+  border-color: #C8E6C9;
+  color: #2E7D32;
+}
+.med-toggle-btn.reactivate:hover {
+  background: #2E7D32;
+  border-color: #2E7D32;
+  color: white;
+}
+.med-toggle-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.med-toggle-btn:disabled:hover {
+  background: white;
+  color: inherit;
+}
+
+/* Empty state */
+.empty-block {
+  text-align: center;
+  padding: 40px 16px;
+  color: #757575;
+}
+.empty-icon  { font-size: 3rem; margin-bottom: 12px; }
+.empty-title { font-size: 1.125rem; font-weight: 700; color: #212121; margin-bottom: 8px; }
+.empty-sub   { font-size: 0.875rem; margin-bottom: 20px; line-height: 1.5; }

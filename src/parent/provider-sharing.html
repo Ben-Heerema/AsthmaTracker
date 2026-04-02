@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Provider Sharing — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/parent.css">
+  <style>
+    body {
+      background: linear-gradient(160deg, #E3F2FD 0%, #E0F7FA 100%);
+    }
+    .page-header {
+      background: linear-gradient(90deg, #1565C0, #0288D1);
+    }
+    .card-header-gradient {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: var(--space-md) var(--space-lg);
+      background: linear-gradient(90deg, var(--color-primary), #0288D1);
+      color: white;
+      font-weight: 700;
+      font-size: 1.0625rem;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+    .toggle-wrapper {
+      padding: var(--space-sm) var(--space-md) !important;
+      border-bottom: 1px solid var(--color-border);
+      border-radius: 0;
+    }
+    .toggle-wrapper:last-child {
+      border-bottom: none;
+    }
+    .toggle-wrapper span:last-child {
+      font-size: var(--font-size-base);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Provider Sharing</h1>
+    <div></div>
+  </div>
+
+  <div class="container" id="main-content" tabindex="-1" style="padding-top:16px;">
+
+    <!-- Access Code Card -->
+    <div class="card" style="margin-bottom:var(--space-md);">
+      <div class="card-header-gradient">
+        <span aria-hidden="true">🔑</span> Generate Access Code
+      </div>
+      <div class="card-body" style="text-align:center;">
+        <p style="font-size:var(--font-size-base);color:var(--color-text-secondary);margin-bottom:var(--space-md);line-height:1.5;">
+          Generate a one-time code and share it with your child's healthcare provider so they can access the data you choose.
+        </p>
+        <button class="btn btn-teal btn-lg btn-block" id="generate-code-btn" type="button">
+          Generate Code
+        </button>
+        <div id="code-display" class="hidden" style="background:linear-gradient(135deg, #E3F2FD, #E0F7FA);padding:var(--space-lg);border-radius:var(--radius-md);margin-top:var(--space-md);border:2px solid var(--color-primary-light);">
+          <div style="font-size:0.875rem;text-transform:uppercase;letter-spacing:2px;color:var(--color-text-secondary);margin-bottom:var(--space-sm);font-weight:600;">Your Access Code</div>
+          <div style="font-size:2.5rem;font-weight:900;letter-spacing:8px;color:var(--color-primary-dark);" id="code-text"></div>
+          <div style="font-size:var(--font-size-sm);color:var(--color-text-secondary);margin-top:var(--space-sm);" id="code-expiry"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sharing Permissions Card -->
+    <div class="card">
+      <div class="card-header-gradient">
+        <span aria-hidden="true">👨‍⚕️</span> Sharing Permissions
+      </div>
+      <div class="card-body">
+        <p style="font-size:var(--font-size-base);color:var(--color-text-secondary);margin-bottom:var(--space-md);line-height:1.5;">
+          Choose exactly what your provider can see. You can change these at any time.
+        </p>
+        <div id="sharing-toggles"></div>
+
+        <div class="alert alert-success hidden mt-md" id="sharing-success" role="alert">✅ Settings saved!</div>
+        <button class="btn btn-primary btn-block btn-lg" id="save-sharing-btn" type="button" style="margin-top:var(--space-lg);">
+          Save Sharing Settings
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="provider-sharing.js" defer></script>
+</body>
+</html>

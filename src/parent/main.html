@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Parent Dashboard — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/parent.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- =========================================================
+       TOP HEADER: Welcome message + Notification bell
+  ========================================================== -->
+  <div class="page-header">
+    <div>
+      <h1>Dashboard</h1>
+      <div id="username-display" style="font-size: var(--font-size-sm); opacity: 0.85;"></div>
+    </div>
+    <!-- Bell icon — shows unread count badge, navigates to notifications -->
+    <button type="button" class="notif-badge notif-bell-btn" id="notif-bell-btn" aria-label="View notifications">
+      🔔
+      <span class="badge-count hidden" id="notif-count">0</span>
+    </button>
+  </div>
+
+  <!-- =========================================================
+       CHILD SELECTOR (selects which child's data to view)
+  ========================================================== -->
+  <div class="container" id="main-content" tabindex="-1">
+    <div class="child-selector">
+      <label for="child-select">Child:</label>
+      <!-- onchange handled in main.js via addEventListener to comply with CSP -->
+      <select id="child-select">
+        <option value="">— Select a child —</option>
+        <!-- Options added dynamically by JS -->
+      </select>
+    </div>
+
+    <!-- =========================================================
+         NAVIGATION BUTTONS GRID (2-column grid of feature buttons)
+    ========================================================== -->
+    <div class="parent-nav-grid" id="nav-grid">
+
+      <button type="button" class="parent-nav-btn" id="nav-daily-checkin">
+        <span class="nav-icon" aria-hidden="true">📋</span>
+        Daily Check-in
+      </button>
+
+      <button type="button" class="parent-nav-btn" id="nav-child-overview">
+        <span class="nav-icon" aria-hidden="true">📊</span>
+        Child Overview
+      </button>
+
+      <button type="button" class="parent-nav-btn" id="nav-set-pb">
+        <span class="nav-icon" aria-hidden="true">🎯</span>
+        Set Personal Best
+      </button>
+
+      <button type="button" class="parent-nav-btn" id="nav-enter-pef">
+        <span class="nav-icon" aria-hidden="true">💨</span>
+        Enter PEF
+      </button>
+
+      <button type="button" class="parent-nav-btn" id="nav-add-badges">
+        <span class="nav-icon" aria-hidden="true">🏅</span>
+        Add Badges
+      </button>
+
+      <button type="button" class="parent-nav-btn" id="nav-medication-inventory">
+        <span class="nav-icon" aria-hidden="true">💊</span>
+        Medication Inventory
+      </button>
+
+      <button type="button" class="parent-nav-btn" id="nav-pdf">
+        <span class="nav-icon" aria-hidden="true">📄</span>
+        Generate PDF
+      </button>
+
+      <button type="button" class="parent-nav-btn" id="nav-todays-zone">
+        <span class="nav-icon" aria-hidden="true">🟢</span>
+        Today's Zone
+      </button>
+
+      <button type="button" class="parent-nav-btn" id="nav-medication-logs">
+        <span class="nav-icon" aria-hidden="true">📝</span>
+        Medication Logs
+      </button>
+
+      <button type="button" class="parent-nav-btn" id="nav-incident-logs">
+        <span class="nav-icon" aria-hidden="true">🚨</span>
+        Incident Logs
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <!-- =========================================================
+       BOTTOM NAVIGATION BAR (fixed)
+  ========================================================== -->
+  <nav class="nav-bar">
+    <button type="button" class="nav-bar-item active" title="Dashboard" aria-current="page">
+      <span aria-hidden="true">🏠</span> <span>Home</span>
+    </button>
+    <button type="button" class="nav-bar-item" id="nav-family" title="Family">
+      <span aria-hidden="true">👨‍👧</span> <span>Family</span>
+    </button>
+    <button type="button" class="nav-bar-item" id="nav-emergency" title="Emergency">
+      <span aria-hidden="true">🚨</span> <span>Emergency</span>
+    </button>
+    <button type="button" class="nav-bar-item" id="nav-settings" title="Settings">
+      <span aria-hidden="true">⚙️</span> <span>Settings</span>
+    </button>
+  </nav>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="main.js" defer></script>
+</body>
+</html>

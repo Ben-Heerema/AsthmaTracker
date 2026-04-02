@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Child Overview — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/parent.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Child Overview</h1>
+    <div></div>
+  </div>
+
+  <div class="container" id="main-content" tabindex="-1">
+    <!-- Child selector — same style as parent main page -->
+    <div class="child-selector">
+      <label for="child-select">Child:</label>
+      <select id="child-select">
+        <option value="">— Select a child —</option>
+      </select>
+    </div>
+
+    <!-- 2×2 grid of navigation buttons — hidden until a child is selected -->
+    <div id="overview-buttons" class="hidden">
+      <div class="parent-nav-grid" style="padding:0;">
+        <button class="parent-nav-btn" id="show-schedule-btn">
+          <span class="nav-icon" aria-hidden="true">📅</span>
+          Controller Schedule
+        </button>
+        <button class="parent-nav-btn" id="show-med-report-btn">
+          <span class="nav-icon" aria-hidden="true">📊</span>
+          Medication Adherence
+        </button>
+        <button class="parent-nav-btn" id="show-sharing-btn">
+          <span class="nav-icon" aria-hidden="true">👨‍⚕️</span>
+          Provider Sharing
+        </button>
+        <button class="parent-nav-btn" id="show-zone-btn">
+          <span class="nav-icon" aria-hidden="true">🟢</span>
+          Today's Zone
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="child-overview.js" defer></script>
+</body>
+</html>

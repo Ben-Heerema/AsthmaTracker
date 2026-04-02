@@ -1,0 +1,388 @@
+/**
+ * take-medication.css — Take Medication Page (Child)
+ *
+ * 4-step guided flow:
+ *   Step 1 — Pick a medication
+ *   Step 2 — Choose number of doses
+ *   Step 3 — Rate breathing BEFORE
+ *   Step 4 — Rate breathing AFTER
+ *   + Success / decline-warning screens
+ *
+ * Green theme (#4CAF50 / #009688) matching the grid button.
+ */
+
+/* ── Header ─────────────────────────────────────────────── */
+
+.page-header {
+  background: linear-gradient(135deg, #4CAF50, #009688);
+}
+
+/* ── Page wrapper ───────────────────────────────────────── */
+
+.tm-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 16px 48px;
+  min-height: calc(100vh - 64px);
+}
+
+/* ── Shared step card ───────────────────────────────────── */
+
+.tm-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  width: 100%;
+  max-width: 460px;
+  overflow: hidden;
+}
+
+/* Coloured top strip to indicate progress */
+.tm-card-header {
+  background: linear-gradient(135deg, #4CAF50, #009688);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 14px 20px;
+}
+
+.tm-card-body {
+  padding: 24px 20px 20px;
+}
+
+/* ══════════════════════════════════════════
+   STEP 1 — Medication list
+   ══════════════════════════════════════════ */
+
+/* Each medication listed as a tappable row */
+.tm-med-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 14px;
+  border: 2px solid #E8F5E9;
+  border-radius: 14px;
+  background: #F9FFF9;
+  cursor: pointer;
+  transition: all 0.18s;
+  margin-bottom: 10px;
+  font-family: 'Nunito', sans-serif;
+  text-align: left;
+  width: 100%;
+}
+
+.tm-med-item:last-child {
+  margin-bottom: 0;
+}
+
+.tm-med-item:hover,
+.tm-med-item:focus-visible {
+  border-color: #4CAF50;
+  background: #E8F5E9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(76,175,80,0.18);
+}
+.tm-med-item:focus-visible {
+  outline: 3px solid #4CAF50;
+  outline-offset: 2px;
+}
+
+.tm-med-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  width: 44px;
+  text-align: center;
+}
+
+.tm-med-name {
+  font-size: 1.0625rem;
+  font-weight: 800;
+  color: #1B5E20;
+  margin-bottom: 3px;
+}
+
+.tm-med-sub {
+  font-size: 0.8125rem;
+  color: #757575;
+}
+
+.tm-med-arrow {
+  font-size: 1.375rem;
+  color: #A5D6A7;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Rescue badge */
+.tm-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.tm-badge-rescue {
+  background: #FFEBEE;
+  color: #C62828;
+}
+
+.tm-badge-controller {
+  background: #E3F2FD;
+  color: #1565C0;
+}
+
+/* Empty state */
+.tm-empty {
+  text-align: center;
+  padding: 32px 16px;
+  color: #9E9E9E;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.tm-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* ══════════════════════════════════════════
+   STEP 2 — Dose counter
+   ══════════════════════════════════════════ */
+
+.tm-doses-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 8px 0 24px;
+}
+
+/* ＋ / − round buttons */
+.tm-dose-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+  color: #2E7D32;
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  box-shadow: 0 3px 10px rgba(76,175,80,0.22);
+}
+
+.tm-dose-btn:hover,
+.tm-dose-btn:focus-visible {
+  background: linear-gradient(135deg, #C8E6C9, #A5D6A7);
+  transform: scale(1.08);
+  box-shadow: 0 5px 14px rgba(76,175,80,0.30);
+}
+.tm-dose-btn:focus-visible {
+  outline: 3px solid #4CAF50;
+  outline-offset: 2px;
+}
+
+.tm-dose-btn:active {
+  transform: scale(0.96);
+}
+
+/* Big dose number */
+.tm-dose-number {
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: #2E7D32;
+  line-height: 1;
+  min-width: 90px;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+}
+
+.tm-dose-label {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #757575;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ══════════════════════════════════════════
+   SHARED BUTTONS
+   ══════════════════════════════════════════ */
+
+/* Primary action button */
+.tm-btn-primary {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4CAF50, #009688);
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  box-shadow: 0 4px 12px rgba(76,175,80,0.30);
+  transition: opacity 0.15s, transform 0.15s;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.tm-btn-primary:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+/* Ghost / back button */
+.tm-btn-ghost {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  background: transparent;
+  color: #757575;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.tm-btn-ghost:hover {
+  border-color: #BDBDBD;
+  color: #424242;
+}
+
+/* ══════════════════════════════════════════
+   STEPS 3 & 4 — Breathing rating buttons
+   ══════════════════════════════════════════ */
+
+.tm-breathing-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+/* Each breathing option: emoji + label */
+.tm-breathing-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 6px;
+  border: 2px solid #E8F5E9;
+  border-radius: 14px;
+  background: #F9FFF9;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+
+.tm-breathing-btn:hover,
+.tm-breathing-btn:focus-visible {
+  border-color: #4CAF50;
+  background: #E8F5E9;
+  transform: translateY(-2px);
+}
+.tm-breathing-btn:focus-visible {
+  outline: 3px solid #4CAF50;
+  outline-offset: 2px;
+}
+
+.tm-breathing-btn.selected {
+  border-color: #2E7D32;
+  background: #C8E6C9;
+  box-shadow: 0 4px 12px rgba(46,125,50,0.22);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.tm-breathing-emoji {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.tm-breathing-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #424242;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Step hint text */
+.tm-step-hint {
+  font-size: 0.875rem;
+  color: #757575;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════
+   SUCCESS SCREEN
+   ══════════════════════════════════════════ */
+
+.tm-success-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+  padding: 48px 28px 40px;
+}
+
+.tm-success-icon {
+  font-size: 5rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.tm-success-title {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #1B5E20;
+  margin-bottom: 8px;
+}
+
+.tm-success-sub {
+  font-size: 1rem;
+  color: #757575;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════
+   DECLINE WARNING BANNER
+   ══════════════════════════════════════════ */
+
+.tm-decline-warning {
+  background: #FFF3E0;
+  border: 2px solid #FFB300;
+  border-radius: 14px;
+  padding: 16px 18px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #E65100;
+  line-height: 1.5;
+  width: 100%;
+  max-width: 460px;
+  margin-bottom: 16px;
+  text-align: center;
+}

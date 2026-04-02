@@ -1,0 +1,142 @@
+/**
+ * adherence-report.css — Medication Adherence Report (Parent)
+ *
+ * Layout: centered white card on gradient background with
+ * circular progress ring, stat grid, and status alert.
+ */
+
+body {
+  background: linear-gradient(160deg, #E3F2FD 0%, #E0F7FA 100%);
+  margin: 0;
+  padding: 0;
+}
+
+.page-header {
+  background: linear-gradient(90deg, #1565C0, #0288D1);
+}
+
+/* ── Outer wrapper — centers card on page ── */
+.adh-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 28px 20px 60px;
+  min-height: calc(100vh - 60px);
+  box-sizing: border-box;
+}
+
+/* ── White card ── */
+.adh-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.13), 0 4px 10px rgba(0,0,0,0.09);
+  padding: 0;
+  width: 500px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* ── Card header (blue gradient banner) ── */
+.adh-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: linear-gradient(90deg, #1565C0, #0288D1);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+/* ── Child name label ── */
+.adh-child-name {
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #757575;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 18px 24px 0;
+}
+
+/* ── Card body ── */
+.adh-card-body {
+  text-align: center;
+  padding: 24px 24px 32px;
+}
+
+/* ══════════════════════════════════════════
+   ADHERENCE CIRCLE — conic-gradient ring
+   ══════════════════════════════════════════ */
+
+.adherence-display {
+  text-align: center;
+  padding: 0 0 8px;
+}
+
+.adherence-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: conic-gradient(#2196F3 var(--pct, 0%), #E0E0E0 0);
+  margin: 0 auto 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adherence-circle::before {
+  content: '';
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.adherence-percent {
+  position: relative;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1565C0;
+}
+
+/* ══════════════════════════════════════════
+   STATS GRID — 2-column layout
+   ══════════════════════════════════════════ */
+
+.adh-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 24px;
+  margin-bottom: 20px;
+}
+
+.adh-stat {
+  background: #F8FAFF;
+  border: 1px solid #DDEEFF;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.adh-stat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #9E9E9E;
+  margin-bottom: 4px;
+}
+
+.adh-stat-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #212121;
+}
+
+/* ── Alert tweaks ── */
+.adh-alert {
+  margin-top: 4px;
+}

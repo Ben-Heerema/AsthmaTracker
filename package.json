@@ -1,0 +1,109 @@
+{
+  "name": "asthma-tracker",
+  "version": "1.0.0",
+  "description": "Offline-first Electron desktop application for asthma management",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder --win --mac --linux",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "build:dir": "electron-builder --dir",
+    "test": "jest --testPathPatterns=tests/ --forceExit",
+    "test:watch": "jest --testPathPatterns=tests/ --watch",
+    "test:coverage": "jest --testPathPatterns=tests/ --coverage --forceExit",
+    "test:auth": "jest --testPathPatterns=tests/auth-validation --forceExit",
+    "test:queries": "jest --testPathPatterns=tests/queries --forceExit",
+    "test:business": "jest --testPathPatterns=tests/business-logic --forceExit",
+    "test:emergency": "jest --testPathPatterns=tests/emergency --forceExit",
+    "test:ratelimit": "jest --testPathPatterns=tests/rate-limiting --forceExit",
+    "test:navigation": "jest --testPathPatterns=tests/navigation-session --forceExit",
+    "test:authorization": "jest --testPathPatterns=tests/authorization --forceExit",
+    "test:notifications": "jest --testPathPatterns=tests/notification-scheduler --forceExit",
+    "test:validation": "jest --testPathPatterns=tests/input-validation --forceExit",
+    "test:pdf": "jest --testPathPatterns=tests/pdf-generation --forceExit",
+    "test:provider": "jest --testPathPatterns=tests/provider-access --forceExit",
+    "test:ui": "playwright test",
+    "test:ui:headed": "playwright test --headed",
+    "test:ui:report": "playwright show-report",
+    "test:all": "jest --testPathPatterns=tests/ --forceExit && playwright test",
+    "lint": "eslint src/ main.js preload.js",
+    "lint:fix": "eslint src/ main.js preload.js --fix",
+    "format": "prettier --write \"src/**/*.{js,css,html}\" main.js preload.js"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "main.js",
+      "!src/**/*.html",
+      "!node_modules/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50
+      }
+    }
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chart.js": "^4.4.2",
+    "pdfkit": "^0.14.0",
+    "sql.js": "^1.14.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "electron": "^29.1.0",
+    "electron-builder": "^24.13.3",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.3.0"
+  },
+  "build": {
+    "appId": "com.asthmatracker.app",
+    "productName": "Asthma Tracker",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "main.js",
+      "preload.js",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "asarUnpack": [
+      "node_modules/sql.js/dist/sql-wasm.wasm"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icons/app_logo.ico",
+      "signAndEditExecutable": true,
+      "signDlls": false
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icons/app_logo.png"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icons/app_logo.ico"
+    },
+    "extraResources": [
+      {
+        "from": "src/assets/videos",
+        "to": "videos",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
+  }
+}

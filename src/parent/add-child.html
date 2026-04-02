@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Add Child — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/auth.css">
+  <link rel="stylesheet" href="../styles/add-child.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header with back button (matches other parent pages) -->
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Add Child</h1>
+    <div></div>
+  </div>
+
+  <!-- Auth-page layout: centred card on a gradient background -->
+  <div class="auth-page" id="main-content" tabindex="-1">
+
+    <div class="auth-card">
+      <h2><span aria-hidden="true">👦</span> New Child Account</h2>
+
+      <!-- Alerts -->
+      <div class="success-banner" id="success-msg" role="alert" hidden style="display:none">
+        ✅ Child added! Returning to dashboard…
+      </div>
+      <div class="alert-error" id="general-error"></div>
+
+      <form id="add-child-form" novalidate>
+
+        <!-- Username -->
+        <div class="form-group">
+          <label for="child-username" class="required">Username</label>
+          <input
+            type="text"
+            id="child-username"
+            class="form-input"
+            placeholder="e.g. tommy_jones"
+            autocomplete="off"
+            required>
+          <div class="field-error" id="username-error"></div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="child-password" class="required">Password</label>
+          <input
+            type="password"
+            id="child-password"
+            class="form-input"
+            placeholder="8+ characters, letters &amp; numbers"
+            autocomplete="new-password"
+            required>
+          <!-- Password strength bar (same as signup) -->
+          <div class="password-strength">
+            <div class="password-strength-fill" id="strength-fill"></div>
+          </div>
+          <div class="form-hint" id="strength-text">Must be 8+ characters with letters and numbers</div>
+          <div class="field-error" id="password-error"></div>
+        </div>
+
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="child-name" class="required">Full Name</label>
+          <input
+            type="text"
+            id="child-name"
+            class="form-input"
+            placeholder="Child's full name"
+            required>
+        </div>
+
+        <!-- Birthday -->
+        <div class="form-group">
+          <label for="child-birthday" class="required">Birthday</label>
+          <input
+            type="date"
+            id="child-birthday"
+            class="form-input"
+            required>
+          <div class="form-hint">Used to calculate age-appropriate PEF reference values.</div>
+        </div>
+
+        <!-- Medical Notes (optional) -->
+        <div class="form-group">
+          <label for="child-notes">Medical Notes <span style="font-weight:400;color:var(--color-text-secondary)">(optional)</span></label>
+          <textarea
+            id="child-notes"
+            class="form-textarea"
+            placeholder="Any relevant medical history, allergies, or notes…"
+            maxlength="500"></textarea>
+          <div class="form-hint"><span id="notes-count">0</span>/500 characters</div>
+        </div>
+
+        <!-- Icon Picker -->
+        <div class="form-group">
+          <label>Choose an Icon</label>
+          <div class="form-hint" style="margin-bottom:8px">Pick an avatar to help tell your children apart.</div>
+          <div class="icon-picker" id="icon-picker" role="radiogroup" aria-label="Child avatar icon">
+            <button type="button" class="icon-option selected" data-icon="boy_older" role="radio" aria-checked="true" aria-label="Boy">👦</button>
+            <button type="button" class="icon-option" data-icon="boy_younger" role="radio" aria-checked="false" aria-label="Young Boy">🧒</button>
+            <button type="button" class="icon-option" data-icon="girl_older" role="radio" aria-checked="false" aria-label="Girl">👧</button>
+            <button type="button" class="icon-option" data-icon="girl_younger" role="radio" aria-checked="false" aria-label="Young Girl">👱‍♀️</button>
+            <button type="button" class="icon-option" data-icon="baby" role="radio" aria-checked="false" aria-label="Baby">👶</button>
+          </div>
+          <input type="hidden" id="child-icon" value="boy_older">
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="save-child-btn">
+          💾 Save Child
+        </button>
+
+      </form>
+    </div>
+
+  </div><!-- /auth-page -->
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="add-child.js" defer></script>
+</body>
+</html>

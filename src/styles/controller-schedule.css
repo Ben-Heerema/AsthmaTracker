@@ -1,0 +1,175 @@
+/**
+ * controller-schedule.css
+ */
+
+body {
+  background: linear-gradient(160deg, #E3F2FD 0%, #E0F7FA 100%);
+  margin: 0;
+  padding: 0;
+}
+
+.page-header {
+  background: linear-gradient(90deg, #1565C0, #0288D1);
+}
+
+/* Outer wrapper */
+.sched-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 28px 20px 60px;
+  min-height: calc(100vh - 60px);
+  box-sizing: border-box;
+}
+
+/* White card */
+.sched-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.13), 0 4px 10px rgba(0,0,0,0.09);
+  padding: 32px 36px 36px;
+  width: 500px;
+  flex-shrink: 0;
+}
+
+.sched-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1565C0;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.sched-card-subtitle {
+  font-size: 0.875rem;
+  color: #757575;
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* Section label */
+.sec-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #1565C0;
+  margin-bottom: 12px;
+}
+
+/* Day grid — 2 columns */
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+/* Each day tile — big, easy to tap */
+.day-tile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #212121;
+  background: #FAFAFA;
+  transition: all 0.15s;
+  user-select: none;
+}
+.day-tile:hover,
+.day-tile:focus-within {
+  border-color: #2196F3;
+  background: #EEF6FF;
+  color: #1565C0;
+}
+.day-tile:focus-within {
+  outline: 3px solid #2196F3;
+  outline-offset: 2px;
+}
+/* Checked state — tile lights up blue */
+.day-tile:has(input:checked) {
+  border-color: #2196F3;
+  background: #E3F2FD;
+  color: #1565C0;
+}
+
+.day-tile input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  accent-color: #2196F3;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Sunday spans full width */
+.day-tile.full-width {
+  grid-column: span 2;
+}
+
+/* Gap between days and doses */
+.sched-divider {
+  height: 32px;
+}
+
+/* Doses per day row */
+.doses-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #F8FAFF;
+  border: 1px solid #DDEEFF;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+.doses-label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #212121;
+}
+.doses-input {
+  width: 90px;
+  padding: 10px 14px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1565C0;
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+  transition: border-color 0.15s;
+  /* Remove spinners — type directly */
+  -moz-appearance: textfield;
+}
+.doses-input::-webkit-outer-spin-button,
+.doses-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.doses-input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 3px rgba(33,150,243,0.15);
+}
+
+/* Success banner */
+.success-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #E8F5E9;
+  border: 1px solid #A5D6A7;
+  border-radius: 8px;
+  padding: 13px 16px;
+  margin-bottom: 14px;
+  font-weight: 600;
+  color: #2E7D32;
+  font-size: 0.875rem;
+}

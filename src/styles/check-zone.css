@@ -1,0 +1,247 @@
+/**
+ * check-zone.css — Check My Zone Page (Child)
+ *
+ * Two screens:
+ *   1. PEF entry form  — big typeable number, hint text, Check Zone button
+ *   2. Zone result     — coloured zone badge, message, instructions, action buttons
+ *
+ * Zone colours:
+ *   green  → #43A047  (well controlled)
+ *   yellow → #FB8C00  (caution)
+ *   red    → #E53935  (emergency)
+ *   grey   → #757575  (no personal best set)
+ */
+
+/* ── Header colour (purple matching the grid button) ── */
+.page-header {
+  background: linear-gradient(135deg, #9C27B0, #673AB7);
+}
+
+/* ── Shared page wrapper ── */
+.zone-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px 40px;
+  min-height: calc(100vh - 64px);
+}
+
+/* ══════════════════════════════════════════
+   SCREEN 1 — PEF entry form
+   ══════════════════════════════════════════ */
+
+.zone-entry-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.zone-entry-title {
+  font-size: 1.25rem;   /* 20px */
+  font-weight: 800;
+  color: #212121;
+  margin-bottom: 6px;
+}
+
+.zone-entry-sub {
+  font-size: 0.875rem;  /* 14px */
+  color: #757575;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+/* Big number input */
+.zone-pef-input {
+  width: 100%;
+  padding: 18px 16px;
+  border: 3px solid #E1BEE7;
+  border-radius: 16px;
+  font-size: 3rem;       /* 48px — scales with user's font size preference */
+  font-weight: 900;
+  color: #6A1B9A;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  background: #FAF5FF;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -moz-appearance: textfield;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.zone-pef-input::-webkit-outer-spin-button,
+.zone-pef-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.zone-pef-input:focus {
+  outline: none;
+  border-color: #9C27B0;
+  box-shadow: 0 0 0 4px rgba(156,39,176,0.12);
+}
+
+.zone-pef-unit {
+  font-size: 0.875rem;  /* 14px */
+  font-weight: 700;
+  color: #9E9E9E;
+  margin-bottom: 24px;
+  display: block;
+}
+
+.zone-check-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #9C27B0, #673AB7);
+  color: white;
+  font-size: 1.0625rem; /* 17px */
+  font-weight: 800;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  box-shadow: 0 4px 14px rgba(106,27,154,0.30);
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.zone-check-btn:hover,
+.zone-check-btn:focus-visible {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+.zone-check-btn:focus-visible {
+  outline: 3px solid #6A1B9A;
+  outline-offset: 2px;
+}
+
+/* ══════════════════════════════════════════
+   SCREEN 2 — Zone result
+   ══════════════════════════════════════════ */
+
+.zone-result-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  padding: 32px 24px 28px;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+/* Large coloured zone badge */
+.zone-badge {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  gap: 4px;
+}
+
+.zone-badge-label {
+  font-size: 1.0625rem; /* 17px */
+  font-weight: 900;
+  color: white;
+  line-height: 1.1;
+}
+
+.zone-badge-pct {
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+}
+
+/* Zone colour variants — applied by JS via className */
+.zone-badge.zone-green  { background: linear-gradient(135deg, #43A047, #00897B); }
+.zone-badge.zone-yellow { background: linear-gradient(135deg, #FB8C00, #F4511E); }
+.zone-badge.zone-red    { background: linear-gradient(135deg, #E53935, #B71C1C); }
+.zone-badge.zone-grey   { background: linear-gradient(135deg, #9E9E9E, #757575); }
+
+/* Zone message (e.g. "Your breathing is great today!") */
+.zone-message {
+  font-size: 1.125rem;  /* 18px */
+  font-weight: 700;
+  color: #212121;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+/* Coloured instruction box */
+.zone-instructions-box {
+  border-radius: 14px;
+  padding: 16px 18px;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  color: #212121;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+/* Green zone */
+.zone-instructions-box.zone-green  { background: #E8F5E9; }
+/* Yellow zone */
+.zone-instructions-box.zone-yellow { background: #FFF3E0; }
+/* Red zone */
+.zone-instructions-box.zone-red    { background: #FFEBEE; }
+/* Grey zone */
+.zone-instructions-box.zone-grey   { background: #F5F5F5; }
+
+/* Action buttons */
+.zone-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.zone-btn-emergency {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #E53935, #B71C1C);
+  color: white;
+  font-size: 1rem;      /* 16px */
+  font-weight: 800;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  box-shadow: 0 4px 12px rgba(229,57,53,0.30);
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.zone-btn-emergency:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.zone-btn-again {
+  width: 100%;
+  padding: 13px;
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  background: transparent;
+  color: #424242;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+
+.zone-btn-again:hover,
+.zone-btn-again:focus-visible {
+  border-color: #9C27B0;
+  color: #6A1B9A;
+  background: #FAF5FF;
+}
+.zone-btn-again:focus-visible {
+  outline: 3px solid #9C27B0;
+  outline-offset: 2px;
+}

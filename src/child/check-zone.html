@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Check My Zone</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/check-zone.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Check My Zone</h1>
+    <div></div>
+  </div>
+
+  <div class="zone-page" id="main-content" tabindex="-1">
+
+    <!-- ── Screen 1: PEF entry ── -->
+    <div id="pef-form" class="zone-entry-card">
+      <div class="zone-entry-title">What is your peak flow number?</div>
+      <div class="zone-entry-sub">Blow into your peak flow meter and enter the number you see</div>
+
+      <input type="number" id="pef-input" class="zone-pef-input"
+             placeholder="—" min="0" step="1"
+             aria-label="Peak flow reading">
+      <span class="zone-pef-unit">L/min</span>
+
+      <button class="zone-check-btn" id="check-zone-btn" type="button">
+        🌡️ Check My Zone
+      </button>
+    </div>
+
+    <!-- ── Screen 2: Zone result ── -->
+    <div id="zone-result" class="zone-result-card hidden">
+
+      <!-- Coloured badge — JS sets class zone-green / zone-yellow / zone-red / zone-grey -->
+      <div class="zone-badge" id="zone-circle" role="status" aria-live="polite">
+        <div class="zone-badge-label" id="zone-label"></div>
+        <div class="zone-badge-pct"   id="zone-pct"></div>
+      </div>
+
+      <div class="zone-message" id="zone-message" aria-live="polite"></div>
+
+      <!-- Coloured instruction box — JS sets class to match zone -->
+      <div class="zone-instructions-box" id="zone-instructions" role="alert"></div>
+
+      <div class="zone-actions">
+        <button class="zone-btn-emergency" id="emergency-btn" type="button">
+          🚨 Emergency Services
+        </button>
+        <button class="zone-btn-again" id="check-again-btn" type="button">
+          ↺ Check Again
+        </button>
+      </div>
+
+    </div>
+
+  </div><!-- /zone-page -->
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="check-zone.js" defer></script>
+</body>
+</html>

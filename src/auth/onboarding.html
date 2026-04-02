@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Welcome — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/auth.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="onboarding-page" id="main-content" tabindex="-1">
+
+    <!-- Slide display area -->
+    <div class="slide-container" id="slide-container">
+      <!-- Filled dynamically by onboarding.js -->
+    </div>
+
+    <!-- Navigation bar (Previous | dots | Next/Finish) -->
+    <!--
+      onclick attributes removed — onboarding.js attaches listeners on DOMContentLoaded
+      to comply with the Content-Security-Policy that blocks inline event handlers.
+      The buttons already have id="prev-btn" and id="next-btn" which the JS uses.
+    -->
+    <div class="slide-nav">
+      <button class="btn btn-secondary" id="prev-btn">
+        ← Back
+      </button>
+
+      <div>
+        <div class="slide-dots" id="slide-dots">
+          <!-- Dot indicators filled by JS -->
+        </div>
+        <div class="slide-counter text-center mt-sm" id="slide-counter"></div>
+      </div>
+
+      <button class="btn btn-primary" id="next-btn">
+        Next →
+      </button>
+    </div>
+
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="onboarding.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,614 @@
+/**
+ * emergency.css — Emergency Triage Page
+ *
+ * This is a 5-step triage wizard for asthma emergencies.
+ * The design uses a strong red/danger theme throughout to
+ * communicate urgency while keeping the layout clean and readable.
+ *
+ * Structure:
+ *   body (red gradient bg)
+ *   .page-header (dark red)
+ *   .emg-911-banner (big 911 call-to-action, always visible)
+ *   .emg-page (centered wrapper)
+ *     .emg-step (white card per step)
+ *       .emg-step-header (red accent header)
+ *       .emg-step-body (content area)
+ */
+
+/* ── Body / background ── */
+body {
+  background: linear-gradient(160deg, #FFEBEE 0%, #FCE4EC 100%);
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Ensure all inputs and textareas are always interactive */
+input, textarea, select, button {
+  -webkit-user-select: text;
+  user-select: text;
+  pointer-events: auto;
+}
+
+/* ── Page header override: danger red instead of default blue ── */
+.page-header {
+  background: linear-gradient(90deg, #B71C1C, #C62828);
+}
+
+/* ── Always-visible 911 banner ── */
+.emg-911-banner {
+  background: linear-gradient(135deg, #C62828, #B71C1C);
+  color: white;
+  text-align: center;
+  padding: 20px 24px 24px;
+  border-bottom: 4px solid #7F0000;
+}
+
+.emg-911-label {
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  margin-bottom: 6px;
+  opacity: 0.95;
+}
+
+.emg-911-number {
+  font-size: 5rem;       /* 80px */
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 4px;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.35);
+}
+
+/* ── Outer wrapper — centres all step cards ── */
+.emg-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 60px;
+  gap: 0;                /* steps stack directly, no gap — card margin handles spacing */
+}
+
+/* ── Individual step card ── */
+.emg-step {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 3px 8px rgba(0,0,0,0.08);
+  width: 580px;
+  overflow: visible;
+  margin-bottom: 20px;
+}
+
+/* ── Step card header (red strip at top of each card) ── */
+.emg-step-header {
+  background: linear-gradient(90deg, #FFCDD2, #FFEBEE);
+  color: #B71C1C;
+  font-size: 0.875rem;  /* 14px */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 12px 20px;
+  border-bottom: 2px solid #FFCDD2;
+  border-radius: 16px 16px 0 0;
+}
+
+/* ── Step card body ── */
+.emg-step-body {
+  padding: 20px 22px 22px;
+  position: relative;
+}
+
+/* ── Section label inside a step (e.g. "Can the child speak in full sentences?") ── */
+.emg-question-label {
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 700;
+  color: #212121;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+/* ── Yes / No button group ── */
+.emg-yn-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.emg-yn-btn {
+  flex: 1;
+  padding: 11px 0;
+  border: 2px solid #E0E0E0;
+  border-radius: 10px;
+  background: #F8F8F8;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 700;
+  color: #424242;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+
+.emg-yn-btn:hover,
+.emg-yn-btn:focus-visible {
+  border-color: #EF9A9A;
+  background: #FFEBEE;
+  color: #C62828;
+}
+.emg-yn-btn:focus-visible {
+  outline: 3px solid #C62828;
+  outline-offset: 2px;
+}
+
+.emg-yn-btn.selected {
+  background: #C62828;
+  border-color: #C62828;
+  color: white;
+}
+
+/* ── Question block (label + yes/no group) ── */
+.emg-question {
+  margin-bottom: 6px;
+}
+
+/* ── Critical 911 callout — hidden until a danger sign is detected ── */
+.emg-critical-box {
+  background: linear-gradient(135deg, #C62828, #B71C1C);
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+  padding: 18px 20px;
+  margin: 14px 0;
+}
+
+.emg-critical-title {
+  font-size: 1.375rem;  /* 22px */
+  font-weight: 900;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+.emg-critical-number {
+  font-size: 3.25rem;   /* 52px */
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.emg-critical-sub {
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* ── Protocol alert box (yellow warning) ── */
+.emg-protocol-box {
+  background: #FFF8E1;
+  border: 2px solid #FFE082;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 0.875rem;  /* 14px */
+  color: #5D4037;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.emg-protocol-box strong {
+  color: #E65100;
+}
+
+/* ── Rescue medication list item ── */
+.emg-rescue-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #F8FAFF;
+  border: 1px solid #DDEEFF;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+}
+
+.emg-rescue-name {
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 700;
+  color: #212121;
+}
+
+.emg-rescue-doses {
+  font-size: 0.8125rem; /* 13px */
+  color: #757575;
+  margin-top: 2px;
+}
+
+/* ── 20-minute countdown timer card ── */
+.emg-timer-card {
+  background: #F8FAFF;
+  border: 2px solid #DDEEFF;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.emg-timer-label {
+  font-size: 0.75rem;   /* 12px */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #9E9E9E;
+  margin-bottom: 6px;
+}
+
+.emg-timer-display {
+  font-size: 3.5rem;    /* 56px */
+  font-weight: 900;
+  color: #1565C0;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin-bottom: 6px;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s;
+}
+
+/* Under 60 seconds — turns amber */
+.emg-timer-display.emg-timer-urgent {
+  color: #E65100;
+}
+
+/* Timer finished — turns green */
+.emg-timer-display.emg-timer-done {
+  color: #2E7D32;
+}
+
+.emg-timer-dose-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.emg-timer-dose-label {
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 700;
+  color: #9E9E9E;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.emg-timer-dose-num {
+  font-size: 0.875rem;  /* 14px */
+  font-weight: 800;
+  color: #1565C0;
+  background: #E3F2FD;
+  border-radius: 20px;
+  padding: 2px 12px;
+}
+
+.emg-timer-btns {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.emg-timer-btn-start {
+  flex: 1;
+  padding: 11px;
+  background: #1565C0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;  /* 14px */
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: background 0.15s;
+}
+
+.emg-timer-btn-start:hover:not(:disabled) {
+  background: #0D47A1;
+}
+
+.emg-timer-btn-start:disabled {
+  background: #90A4AE;
+  cursor: default;
+}
+
+.emg-timer-btn-reset {
+  flex: 1;
+  padding: 11px;
+  background: transparent;
+  color: #1565C0;
+  border: 2px solid #90CAF9;
+  border-radius: 8px;
+  font-size: 0.875rem;  /* 14px */
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+
+.emg-timer-btn-reset:hover:not(:disabled) {
+  background: #E3F2FD;
+  border-color: #1565C0;
+}
+
+.emg-timer-btn-reset:disabled {
+  color: #B0BEC5;
+  border-color: #ECEFF1;
+  cursor: default;
+}
+
+/* "Symptoms worsening" skip button */
+.emg-timer-btn-worsen {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: #B71C1C;
+  border: 2px solid #FFCDD2;
+  border-radius: 8px;
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+
+.emg-timer-btn-worsen:hover:not(:disabled) {
+  background: #FFEBEE;
+  border-color: #EF9A9A;
+}
+
+.emg-timer-btn-worsen:disabled {
+  color: #9E9E9E;
+  border-color: #EEEEEE;
+  cursor: default;
+}
+
+/* ── Inline validation error (replaces alert() dialogs) ── */
+.emg-notes-error {
+  background: #FFEBEE;
+  border: 1.5px solid #EF9A9A;
+  border-radius: 8px;
+  color: #C62828;
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 700;
+  padding: 9px 14px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+/* ── Notes textarea ── */
+.emg-notes-label {
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #9E9E9E;
+  margin-bottom: 8px;
+  margin-top: 16px;
+  display: block;
+}
+
+.emg-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 0.875rem;  /* 14px */
+  font-family: 'Nunito', sans-serif;
+  color: #212121;
+  background: white;
+  resize: none;
+  height: 100px;
+  line-height: 1.5;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+  display: block;
+  pointer-events: auto;
+  user-select: text;
+  -webkit-user-select: text;
+  position: relative;
+  z-index: 1;
+}
+
+.emg-textarea:focus {
+  outline: none;
+  border-color: #EF5350;
+  box-shadow: 0 0 0 3px rgba(239,83,80,0.12);
+}
+
+/* ── PEF input ── */
+.emg-pef-hint {
+  font-size: 0.875rem;  /* 14px */
+  color: #757575;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.emg-pef-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.emg-pef-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 1.5rem;    /* 24px */
+  font-weight: 700;
+  color: #C62828;
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+  transition: border-color 0.15s;
+  -moz-appearance: textfield;
+}
+
+.emg-pef-input::-webkit-outer-spin-button,
+.emg-pef-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.emg-pef-input:focus {
+  outline: none;
+  border-color: #EF5350;
+}
+
+.emg-pef-unit {
+  font-size: 0.875rem;  /* 14px */
+  font-weight: 700;
+  color: #9E9E9E;
+  white-space: nowrap;
+}
+
+/* ── Guidance text (Step 5) ── */
+.emg-guidance-text {
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* Bullet list inside the guidance — left edge aligned with the full-width buttons */
+.emg-guidance-list {
+  list-style-position: inside;
+  padding-left: 0;
+  margin: 12px 0 16px;
+  line-height: 2;
+}
+
+/* ── Bottom 911 reminder (Step 5) ── */
+.emg-final-911 {
+  background: linear-gradient(135deg, #C62828, #B71C1C);
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+
+.emg-final-911-label {
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.emg-final-911-number {
+  font-size: 3.75rem;   /* 60px */
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+/* ── Continue / Back button row ── */
+.emg-btn-continue {
+  width: 100%;
+  padding: 14px;
+  background: #C62828;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;      /* 16px */
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: background 0.15s;
+  margin-bottom: 8px;
+}
+
+.emg-btn-continue:hover {
+  background: #B71C1C;
+}
+
+.emg-btn-back {
+  width: 100%;
+  padding: 11px;
+  background: transparent;
+  color: #757575;
+  border: 2px solid #E0E0E0;
+  border-radius: 10px;
+  font-size: 0.875rem;  /* 14px */
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+
+.emg-btn-back:hover {
+  border-color: #BDBDBD;
+  color: #424242;
+}
+
+/* ── Save & Finish button (Step 5 — blue, positive action) ── */
+.emg-btn-finish {
+  width: 100%;
+  padding: 14px;
+  background: #1565C0;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;      /* 16px */
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: background 0.15s;
+}
+
+.emg-btn-finish:hover {
+  background: #0D47A1;
+}
+
+/* ── Child selector row (Step 1) ── */
+.emg-child-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFEBEE;
+  border: 2px solid #FFCDD2;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.emg-child-row label {
+  font-weight: 700;
+  font-size: 0.9375rem; /* 15px */
+  color: #B71C1C;
+  white-space: nowrap;
+}
+
+.emg-child-row select {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid #EF9A9A;
+  border-radius: 6px;
+  font-size: 0.9375rem; /* 15px */
+  background: white;
+  color: #212121;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+}
+
+.emg-child-row select:focus {
+  outline: none;
+  border-color: #C62828;
+}
+
+/* ── Introductory text ── */
+.emg-intro {
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  color: #212121;
+  margin-bottom: 16px;
+}
+
+/* ── Muted helper text ── */
+.emg-muted {
+  font-size: 0.875rem;  /* 14px */
+  color: #757575;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}

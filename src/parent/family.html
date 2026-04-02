@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Family — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/family.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Family</h1>
+    <div></div>
+  </div>
+
+  <div class="family-page" id="main-content" tabindex="-1">
+    <div class="family-card">
+      <div id="child-list">
+        <div class="spinner"></div>
+      </div>
+      <button class="add-child-btn" id="add-child-btn" type="button">+ Add Child</button>
+    </div>
+  </div>
+
+  <!-- Modal: Child login password prompt -->
+  <div class="modal-overlay hidden" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="modal-child-name">
+    <div class="modal">
+      <h2 id="modal-child-name">Log In as Child</h2>
+      <p class="text-muted mt-sm">Enter the child's password to switch to their account.</p>
+      <p class="text-muted" style="font-size:0.75rem;color:var(--color-warning);margin-top:6px">
+        ⚠️ This will log you out of the parent dashboard.
+      </p>
+      <div class="form-group mt-md">
+        <label for="child-password">Password</label>
+        <input type="password" id="child-password" class="form-input" placeholder="Child's password">
+      </div>
+      <div class="alert alert-danger hidden" id="modal-error" role="alert">Incorrect password. Try again.</div>
+      <div style="display:flex;gap:12px;margin-top:16px">
+        <button type="button" class="btn btn-secondary flex-1" id="modal-cancel-btn">Cancel</button>
+        <button type="button" class="btn btn-primary flex-1" id="modal-login-btn">Log In</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <nav class="nav-bar">
+    <button type="button" class="nav-bar-item" id="nav-home">🏠<span>Home</span></button>
+    <button type="button" class="nav-bar-item active">👨‍👧<span>Family</span></button>
+    <button type="button" class="nav-bar-item" id="nav-emergency">🚨<span>Emergency</span></button>
+    <button type="button" class="nav-bar-item" id="nav-settings">⚙️<span>Settings</span></button>
+  </nav>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="family.js" defer></script>
+</body>
+</html>

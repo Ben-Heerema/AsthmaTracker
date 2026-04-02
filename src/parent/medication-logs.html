@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Medication Logs</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/medication-logs.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-header">
+    <button type="button" class="header-back" id="back-btn" aria-label="Go back">←</button>
+    <h1>Medication Logs</h1>
+    <div></div>
+  </div>
+
+  <div class="ml-page" id="main-content" tabindex="-1">
+    <div class="ml-card">
+      <div class="ml-card-header">
+        <span class="ml-card-title"><span aria-hidden="true">💊</span> Dose History</span>
+        <span class="ml-card-sub">Last 90 days</span>
+      </div>
+      <!-- Search / filter bar -->
+      <div class="ml-filter-bar">
+        <div class="ml-filter-field">
+          <label for="search-med" class="ml-filter-label">Search medication</label>
+          <input type="text" id="search-med" class="ml-filter-input" placeholder="e.g. Albuterol" list="med-suggestions" autocomplete="off">
+          <datalist id="med-suggestions"></datalist>
+        </div>
+        <div class="ml-filter-field">
+          <label for="filter-week" class="ml-filter-label">Week of</label>
+          <input type="date" id="filter-week" class="ml-filter-input">
+        </div>
+        <button type="button" class="ml-filter-clear hidden" id="clear-filters-btn">Clear filters</button>
+      </div>
+
+      <div id="filter-summary" class="ml-filter-summary hidden" aria-live="polite"></div>
+
+      <div class="ml-card-body">
+        <div id="log-list"><div class="spinner"></div></div>
+
+        <div id="pagination-controls" class="page-controls hidden" aria-label="Pagination" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="medication-logs.js" defer></script>
+</body>
+</html>

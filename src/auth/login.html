@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Log In — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/auth.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="auth-page" id="main-content" tabindex="-1">
+
+    <div class="auth-logo">
+      <img src="../../assets/icons/logo-placeholder.svg" alt="Logo" class="logo-icon">
+      <h1>Welcome Back</h1>
+    </div>
+
+    <div class="auth-card">
+      <h2>Log In</h2>
+
+      <form id="login-form" novalidate>
+
+        <!-- Username or Email -->
+        <div class="form-group">
+          <label for="username-email" class="required">Username or Email</label>
+          <input
+            type="text"
+            id="username-email"
+            class="form-input"
+            placeholder="Enter your username or email"
+            autocomplete="username"
+            required
+            aria-required="true"
+            aria-describedby="login-error"
+          >
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password" class="required">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-input"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+            aria-required="true"
+            aria-describedby="login-error"
+          >
+        </div>
+
+        <!-- Error message area -->
+        <!--
+          This div is hidden by default (hidden class).
+          When login fails, the JS removes the 'hidden' class to show the error.
+        -->
+        <div class="alert alert-danger hidden" id="login-error" role="alert">
+          Invalid username/email or password
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="submit-btn">
+          Log In
+        </button>
+
+        <!-- Back Button -->
+        <!-- id="back-btn" so login.js can attach a click listener (CSP blocks inline onclick) -->
+        <button type="button" class="btn btn-ghost btn-block mt-md" id="back-btn">
+          Back
+        </button>
+
+      </form>
+
+      <!-- Info note about child login -->
+      <div style="margin-top: 20px; padding: 12px; background: var(--color-primary-light); border-radius: 8px; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
+        <strong>Note for children:</strong> Log in through the Family page — ask your parent to help you log in as a child.
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="login.js" defer></script>
+</body>
+</html>

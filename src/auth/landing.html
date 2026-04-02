@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!--
+    meta viewport: Makes the page scale correctly on different screen sizes.
+    content-security-policy: Security header that restricts what scripts can run.
+    Only scripts from this app itself are allowed (no external scripts).
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Asthma Tracker</title>
+
+  <!-- Load global styles first, then page-specific styles -->
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/auth.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!--
+    LANDING PAGE LAYOUT:
+    - Logo and app name centered at top
+    - Two large buttons: Sign Up and Log In
+    - This is the first screen users see on launch
+  -->
+  <div class="auth-page" id="main-content" tabindex="-1">
+
+    <!-- Logo Section -->
+    <div class="auth-logo">
+      <!-- Placeholder logo (replace with actual image when available) -->
+      <img src="../../assets/icons/logo-placeholder.svg" alt="Asthma Tracker Logo" class="logo-icon">
+      <h1>Asthma Tracker</h1>
+      <p>Manage asthma, track progress, stay safe</p>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="landing-buttons">
+      <!-- Sign Up button: takes new users to create an account -->
+      <!-- id="signup-btn" lets landing.js attach a click listener (CSP blocks inline onclick) -->
+      <button class="btn btn-primary btn-lg" id="signup-btn">
+        Sign Up
+      </button>
+
+      <!-- Log In button: takes existing users to the login screen -->
+      <!-- id="login-btn" lets landing.js attach a click listener (CSP blocks inline onclick) -->
+      <button class="btn btn-secondary btn-lg" id="login-btn">
+        Log In
+      </button>
+    </div>
+
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <!-- defer: script runs after HTML is parsed -->
+  <script src="landing.js" defer></script>
+</body>
+</html>

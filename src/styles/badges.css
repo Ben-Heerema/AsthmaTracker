@@ -1,0 +1,52 @@
+/**
+ * badges.css — Child Badges Page
+ *
+ * Warm orange/amber theme matching the badges nav button.
+ * Achieved badges get a gold border + gradient; unachieved are greyed out.
+ */
+
+.page-header {
+  background: linear-gradient(135deg, #FF9800, #FF5722);
+}
+
+/* ── Page wrapper — centers content ── */
+.badges-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 16px 40px;
+  min-height: calc(100vh - 60px);
+  box-sizing: border-box;
+}
+
+.badges-page-inner {
+  width: 100%;
+  max-width: 560px;
+}
+
+/* ── "X badges earned!" summary banner ── */
+.badges-summary {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: linear-gradient(135deg, #fff9c4, #ffffff);
+  border-radius: 12px;
+  border: 2px solid #FF9800;
+}
+
+.badges-summary-icon {
+  font-size: 2rem;
+}
+
+.badges-summary-text {
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-top: 8px;
+}
+
+/* ── Empty state tweaks ── */
+.badges-empty-hint {
+  font-size: 0.875rem;
+  margin-top: 8px;
+  color: var(--color-text-secondary);
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Notifications</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/notifications.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="page-header">
+    <button type="button" class="header-back" id="back-btn" aria-label="Go back">←</button>
+    <h1>Notifications</h1>
+    <button type="button" class="header-mark-read-btn" id="mark-all-read-btn">Mark All Read</button>
+  </div>
+
+  <div class="notif-page" id="main-content" tabindex="-1">
+    <div class="notif-card">
+      <div class="notif-card-header">
+        <span class="notif-card-title"><span aria-hidden="true">🔔</span> Your Notifications</span>
+        <span class="notif-card-sub" id="notif-count-label"></span>
+      </div>
+
+      <!-- Show read toggle -->
+      <div class="notif-toggle-bar">
+        <span class="notif-toggle-label">Show read notifications</span>
+        <label class="toggle">
+          <input type="checkbox" id="show-read-toggle" aria-label="Show read notifications">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="notif-card-body">
+        <div id="notif-list" aria-live="polite"><div class="spinner"></div></div>
+
+        <div id="pagination-controls" class="page-controls hidden" aria-label="Pagination" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="notifications.js" defer></script>
+</body>
+</html>

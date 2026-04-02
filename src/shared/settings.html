@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Settings</title>
+  <link rel="stylesheet" href="../styles/global.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Settings</h1>
+    <div></div>
+  </div>
+  <div class="container" id="main-content" tabindex="-1">
+
+    <!-- Account Info -->
+    <div class="card">
+      <div class="card-header">Account</div>
+      <div class="card-body">
+        <div style="display:flex;justify-content:space-between;padding:8px 0">
+          <span class="text-muted">Logged in as</span>
+          <strong id="account-username">—</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0">
+          <span class="text-muted">Account type</span>
+          <strong id="account-role">—</strong>
+        </div>
+        <hr class="divider">
+        <button class="btn btn-danger btn-block" id="logout-btn">Log Out</button>
+      </div>
+    </div>
+
+    <!-- App Info -->
+    <div class="card">
+      <div class="card-header">About</div>
+      <div class="card-body">
+        <div style="display:flex;justify-content:space-between;padding:8px 0">
+          <span class="text-muted">App Version</span>
+          <span>1.0.0</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0">
+          <span class="text-muted">Database</span>
+          <span>Local SQLite (offline)</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0">
+          <span class="text-muted">Notifications</span>
+          <span id="notif-status">Checking...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Info -->
+    <div class="card">
+      <div class="card-header">Data &amp; Privacy</div>
+      <div class="card-body">
+        <p class="text-muted" style="font-size:0.875rem;line-height:1.6">
+          All data is stored <strong>locally on this device</strong> in a SQLite database file.
+          No data is sent to any server or cloud service.
+          The database file is located in the application folder as <code>asthma_tracker.db</code>.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom nav bar (role-aware — JS sets correct targets) -->
+  <nav class="nav-bar" id="bottom-nav">
+    <button type="button" class="nav-bar-item" id="nav-home">
+      <span aria-hidden="true">🏠</span><span>Home</span>
+    </button>
+    <button type="button" class="nav-bar-item nav-bar-emergency" id="nav-emergency">
+      <span aria-hidden="true">🚨</span><span>Emergency</span>
+    </button>
+    <button type="button" class="nav-bar-item active" id="nav-settings" aria-current="page">
+      <span aria-hidden="true">⚙️</span><span>Settings</span>
+    </button>
+  </nav>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="toast.js" defer></script>
+  <script src="session-guard.js" defer></script>
+  <script src="settings.js" defer></script>
+</body>
+</html>

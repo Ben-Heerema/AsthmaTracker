@@ -1,0 +1,210 @@
+/**
+ * todays-zone.css — Styles for Today's Zone page
+ */
+
+body {
+  background: linear-gradient(160deg, #E3F2FD 0%, #E0F7FA 100%);
+  margin: 0;
+  padding: 0;
+}
+
+.page-header {
+  background: linear-gradient(90deg, #1565C0, #0288D1);
+}
+
+/* Outer wrapper */
+.zone-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 28px 20px 60px;
+  min-height: calc(100vh - 60px);
+  box-sizing: border-box;
+}
+
+/* White card */
+.zone-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.13), 0 4px 10px rgba(0,0,0,0.09);
+  padding: 32px 36px 36px;
+  width: 520px;
+  flex-shrink: 0;
+}
+
+/* Card title */
+.zone-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1565C0;
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+/* Child selector */
+.child-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #E3F2FD;
+  border: 2px solid #90CAF9;
+  border-radius: 10px;
+  padding: 11px 16px;
+  margin-bottom: 24px;
+}
+.child-row label {
+  font-weight: 700;
+  white-space: nowrap;
+  font-size: 0.9375rem;
+  color: #212121;
+}
+.child-row select {
+  flex: 1;
+  padding: 7px 11px;
+  border: 2px solid #2196F3;
+  border-radius: 6px;
+  font-size: 0.9375rem;
+  background: white;
+  color: #212121;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+}
+.child-row select:focus {
+  outline: none;
+  border-color: #1565C0;
+}
+
+/* Prompt when no child selected */
+.no-child-prompt {
+  text-align: center;
+  padding: 24px 0 8px;
+  color: #757575;
+}
+.no-child-prompt .p-icon {
+  font-size: 2.75rem;
+  margin-bottom: 10px;
+}
+.no-child-prompt .p-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #212121;
+  margin-bottom: 8px;
+}
+
+/* Zone reference chips inside the prompt */
+.zone-ref-strip {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+.zone-ref-chip {
+  flex: 1;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.zone-ref-chip.green  { background: #E8F5E9; color: #2E7D32; }
+.zone-ref-chip.yellow { background: #FFF3E0; color: #E65100; }
+.zone-ref-chip.red    { background: #FFEBEE; color: #B71C1C; }
+.zone-ref-chip .chip-pct {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+/* ── Zone display (when PEF exists) ── */
+
+/* Wrapper holds bar + marker together so marker overlays the bar */
+.zone-bar-wrapper {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+/* The segmented coloured bar */
+.zone-bar-track {
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 32px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+.zone-bar-seg {
+  height: 100%;
+  transition: flex 0.4s ease;
+}
+.zone-bar-seg.green  { background: linear-gradient(90deg, #388E3C, #66BB6A); }
+.zone-bar-seg.yellow { background: linear-gradient(90deg, #F57C00, #FFB300); }
+.zone-bar-seg.red    { background: linear-gradient(90deg, #C62828, #EF5350); }
+
+/* Marker dot sits centred on top of the bar */
+.zone-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: left 0.4s ease;
+  pointer-events: none;
+}
+.zone-marker-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.45);
+  border: 3px solid #212121;
+}
+
+/* Zone name badge */
+.zone-name-badge {
+  text-align: center;
+  font-size: 1.625rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
+}
+.zone-name-badge.green  { color: #2E7D32; }
+.zone-name-badge.yellow { color: #E65100; }
+.zone-name-badge.red    { color: #B71C1C; }
+
+/* Percentage text */
+.zone-pct-text {
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #757575;
+  margin-bottom: 18px;
+}
+
+/* Message card */
+.zone-message-card {
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.5;
+}
+.zone-message-card.green  { background: #E8F5E9; color: #2E7D32; }
+.zone-message-card.yellow { background: #FFF3E0; color: #E65100; }
+.zone-message-card.red    { background: #FFEBEE; color: #B71C1C; }
+
+/* No PEF state */
+.no-pef-block {
+  text-align: center;
+  padding: 20px 0 8px;
+}
+.no-pef-block .p-icon  { font-size: 2.75rem; margin-bottom: 10px; }
+.no-pef-block .p-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #212121;
+  margin-bottom: 6px;
+}
+.no-pef-block .p-sub {
+  color: #757575;
+  font-size: 0.875rem;
+  margin-bottom: 20px;
+}

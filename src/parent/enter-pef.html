@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Enter PEF — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/enter-pef.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Enter PEF</h1>
+    <div></div>
+  </div>
+
+  <div class="pef-page" id="main-content" tabindex="-1">
+    <div class="pef-card">
+
+      <div class="pef-card-title"><span aria-hidden="true">📏</span> PEF Readings</div>
+
+      <!-- Child selector -->
+      <div class="child-row">
+        <label for="child-select">Child:</label>
+        <select id="child-select" aria-label="Select child">
+          <option value="">— Select a child —</option>
+        </select>
+      </div>
+
+      <!-- Prompt -->
+      <div id="no-child-prompt" class="no-child-prompt">
+        <div class="p-icon">💨</div>
+        <div class="p-title">Select a child above</div>
+        <p>Peak Expiratory Flow measures how fast air can be breathed out of the lungs.</p>
+      </div>
+
+      <!-- Form -->
+      <div id="form-area" class="hidden">
+
+        <!-- Personal best hint — shown by JS -->
+        <div class="pb-hint-chip hidden" id="pb-hint"></div>
+
+        <!-- Daily PEF -->
+        <div class="pef-field">
+          <span class="pef-field-label"><span aria-hidden="true">🌅</span> Daily PEF</span>
+          <div class="pef-input-row">
+            <input type="number" id="daily-pef" min="0" max="900" step="1"
+                   placeholder="—" aria-label="Daily PEF">
+            <span class="pef-unit">L/min</span>
+          </div>
+        </div>
+
+        <!-- Pre-medication PEF -->
+        <div class="pef-field">
+          <span class="pef-field-label"><span aria-hidden="true">💊</span> Pre-Medication PEF</span>
+          <div class="pef-input-row">
+            <input type="number" id="pre-med-pef" min="0" max="900" step="1"
+                   placeholder="—" aria-label="Pre-medication PEF">
+            <span class="pef-unit">L/min</span>
+          </div>
+        </div>
+
+        <!-- Post-medication PEF -->
+        <div class="pef-field">
+          <span class="pef-field-label"><span aria-hidden="true">✅</span> Post-Medication PEF</span>
+          <div class="pef-input-row">
+            <input type="number" id="post-med-pef" min="0" max="900" step="1"
+                   placeholder="—" aria-label="Post-medication PEF">
+            <span class="pef-unit">L/min</span>
+          </div>
+        </div>
+
+        <div class="pef-spacer"></div>
+
+        <!-- Error banner — shown only if save fails -->
+        <div class="error-banner hidden" id="error-msg" role="alert">
+          ⚠️ Something went wrong — PEF could not be saved. Please try again.
+        </div>
+
+        <button class="btn btn-primary btn-block btn-lg" id="save-pef-btn" type="button" disabled>
+          💾 Save PEF
+        </button>
+
+      </div><!-- /form-area -->
+
+    </div><!-- /pef-card -->
+  </div><!-- /pef-page -->
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="enter-pef.js" defer></script>
+</body>
+</html>

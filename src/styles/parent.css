@@ -1,0 +1,195 @@
+/**
+ * parent.css — Styles for Parent role screens
+ */
+
+/* Parent main page - large nav button grid */
+.parent-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+
+.parent-nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  background: white;
+  border: 2px solid var(--color-primary-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  color: var(--color-text);
+  min-height: 90px;
+}
+
+.parent-nav-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.parent-nav-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.parent-nav-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.parent-nav-btn:disabled:hover {
+  border-color: var(--color-border);
+  background: var(--color-surface);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Notification bell button (was inline styles — moved here for maintainability) */
+.notif-bell-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 2.25rem;
+  padding: 4px 8px;
+  position: relative;
+}
+
+.parent-nav-btn .nav-icon {
+  font-size: 1.75rem;
+}
+
+/* Symptom chart controls */
+.chart-controls {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.chart-container {
+  position: relative;
+  height: 300px;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+}
+
+/* Medication inventory list */
+.medication-item {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.medication-item:hover {
+  background: var(--color-bg-secondary);
+}
+
+.medication-item .med-name {
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+}
+
+.medication-item .med-meta {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.med-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.med-badge.rescue {
+  background: var(--color-danger-light);
+  color: var(--color-danger-dark);
+}
+
+.med-badge.controller {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.med-expiry-warning {
+  color: var(--color-warning-dark);
+  font-weight: 600;
+}
+
+/* Adherence display */
+.adherence-display {
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+.adherence-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: conic-gradient(var(--color-primary) var(--pct), var(--color-border) 0);
+  margin: 0 auto var(--space-lg);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adherence-circle::before {
+  content: '';
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: white;
+}
+
+.adherence-percent {
+  position: relative;
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* Incident log entries */
+.incident-entry {
+  border-left: 4px solid var(--color-danger);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  background: var(--color-bg-secondary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.incident-timestamp {
+  font-weight: 600;
+  color: var(--color-danger-dark);
+}
+
+.red-flag {
+  display: inline-block;
+  background: var(--color-danger-light);
+  color: var(--color-danger-dark);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  margin: 2px;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Patient View</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/provider.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1 id="patient-name">Patient</h1>
+    <div></div>
+  </div>
+
+  <!-- Shared data sections — shown/hidden based on sharing permissions -->
+  <div class="container" id="main-content" tabindex="-1">
+    <!-- Patient info always visible -->
+    <div class="card" id="patient-info-card">
+      <div class="card-header">Patient Information</div>
+      <div class="card-body" id="patient-info"></div>
+    </div>
+
+    <!-- Zone (only if sharePef is on) -->
+    <div class="card hidden" id="zone-card">
+      <div class="card-header">Current Zone</div>
+      <div class="card-body text-center" id="zone-body"></div>
+    </div>
+
+    <!-- PEF data -->
+    <div class="card hidden" id="pef-card">
+      <div class="card-header">Peak Flow History (PEF)</div>
+      <div class="card-body" id="pef-body"></div>
+    </div>
+
+    <!-- Controller Adherence -->
+    <div class="card hidden" id="adherence-card">
+      <div class="card-header">Controller Medication Adherence</div>
+      <div class="card-body text-center" id="adherence-body"></div>
+    </div>
+
+    <!-- Symptom / Check-in chart -->
+    <div class="card hidden" id="symptoms-card">
+      <div class="card-header">Recent Symptoms</div>
+      <div class="card-body" id="symptoms-body"></div>
+    </div>
+
+    <!-- Triggers -->
+    <div class="card hidden" id="triggers-card">
+      <div class="card-header">Common Triggers</div>
+      <div class="card-body" id="triggers-body"></div>
+    </div>
+
+    <!-- Rescue Logs -->
+    <div class="card hidden" id="rescue-card">
+      <div class="card-header">Rescue Medication Logs</div>
+      <div class="card-body" id="rescue-body"></div>
+    </div>
+
+    <!-- Triage Incidents -->
+    <div class="card hidden" id="incidents-card">
+      <div class="card-header">Triage Incidents</div>
+      <div class="card-body" id="incidents-body"></div>
+    </div>
+
+    <!-- Generate PDF -->
+    <button class="btn btn-primary btn-block btn-lg" style="margin-bottom:80px"
+            id="generate-pdf-btn">
+      📄 Generate PDF Report
+    </button>
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <!-- Hidden canvases used by Chart.js to render charts for PDF export -->
+  <canvas id="chart-pef-trend" width="600" height="300" style="display:none;"></canvas>
+  <canvas id="chart-pef-zones" width="400" height="300" style="display:none;"></canvas>
+  <canvas id="chart-symptoms" width="600" height="300" style="display:none;"></canvas>
+
+  <script src="../../node_modules/chart.js/dist/chart.umd.js"></script>
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="patient-view.js" defer></script>
+</body>
+</html>

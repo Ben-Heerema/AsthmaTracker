@@ -1,0 +1,14 @@
+node_modules/
+asthma_tracker.db
+coverage/
+playwright-report/
+test-results/
+.nyc_output/
+dist/
+.env
+.env.local
+.env.*.local
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

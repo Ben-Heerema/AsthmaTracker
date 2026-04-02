@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Set Personal Best — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/set-personal-best.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Set Personal Best</h1>
+    <div></div>
+  </div>
+
+  <div class="pb-page" id="main-content" tabindex="-1">
+    <div class="pb-card">
+
+      <div class="pb-card-title"><span aria-hidden="true">🏆</span> Personal Best PEF</div>
+
+      <!-- Child selector -->
+      <div class="child-row">
+        <label for="child-select">Child:</label>
+        <select id="child-select" aria-label="Select child">
+          <option value="">— Select a child —</option>
+        </select>
+      </div>
+
+      <!-- Prompt -->
+      <div id="no-child-prompt" class="no-child-prompt">
+        <div class="p-icon">🏆</div>
+        <div class="p-title">Select a child above</div>
+        <p>The personal best PEF is used to calculate the Green / Yellow / Red zone for all readings.</p>
+      </div>
+
+      <!-- Form -->
+      <div id="pb-section" class="hidden">
+
+        <!-- Big typeable PEF input -->
+        <div class="sec-label">Best recorded PEF value</div>
+        <div class="pef-input-row">
+          <input
+            type="number"
+            id="pb-value"
+            min="50"
+            max="900"
+            step="1"
+            placeholder="e.g. 420"
+            aria-label="Personal best PEF value"
+          >
+          <span class="pef-unit">L/min</span>
+        </div>
+        <p class="pef-hint">
+          Enter the highest PEF the child has recorded when fully healthy.
+          Measure three times and use the best reading.
+        </p>
+
+        <!-- Zone reference -->
+        <div class="sec-label">How zones are calculated</div>
+        <div class="zone-strip">
+          <div class="zone-chip green">
+            <span class="chip-pct">≥ 80%</span>
+            🟢 Green<br>Well controlled
+          </div>
+          <div class="zone-chip yellow">
+            <span class="chip-pct">50–79%</span>
+            🟡 Yellow<br>Caution
+          </div>
+          <div class="zone-chip red">
+            <span class="chip-pct">&lt; 50%</span>
+            🔴 Red<br>Emergency
+          </div>
+        </div>
+
+        <!-- Success banner -->
+        <div class="success-banner hidden" id="success-msg" role="alert">
+          ✅ Personal best saved!
+        </div>
+
+        <button class="btn btn-primary btn-block btn-lg" id="save-pb-btn" type="button" disabled>
+          💾 Save Personal Best
+        </button>
+
+      </div><!-- /pb-section -->
+
+    </div><!-- /pb-card -->
+  </div><!-- /pb-page -->
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="set-personal-best.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+/**
+ * medication-logs.css — Medication Logs Page (Parent)
+ *
+ * Shows the last 90 days of medication dose logs across all children.
+ * Each log entry is a card showing: medication name, type badge,
+ * date/time, doses taken, before/after breathing with trend arrow,
+ * and child name.
+ *
+ * Teal/green theme to match the medication domain.
+ */
+
+/* ── Page background ────────────────────────────────────── */
+
+body {
+  background: linear-gradient(160deg, #E8F5E9 0%, #E0F2F1 100%);
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+
+.page-header {
+  background: linear-gradient(135deg, #388E3C, #00796B);
+}
+
+/* ── Page wrapper ───────────────────────────────────────── */
+
+.ml-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 28px 20px 60px;
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+}
+
+/* ── Outer white card ───────────────────────────────────── */
+
+.ml-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.11), 0 4px 10px rgba(0,0,0,0.07);
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+}
+
+/* Coloured header strip inside the card */
+.ml-card-header {
+  background: linear-gradient(135deg, #388E3C, #00796B);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ml-card-title {
+  color: white;
+  font-size: 1.0625rem;
+  font-weight: 800;
+}
+
+.ml-card-sub {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.ml-card-body {
+  padding: 16px 20px 20px;
+}
+
+/* ══════════════════════════════════════════
+   SEARCH / FILTER BAR
+   ══════════════════════════════════════════ */
+
+.ml-filter-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 14px 20px 10px;
+  flex-wrap: wrap;
+}
+
+.ml-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.ml-filter-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #757575;
+}
+
+.ml-filter-input {
+  padding: 8px 12px;
+  border: 2px solid #C8E6C9;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #212121;
+  background: #FAFFFE;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.ml-filter-input:focus {
+  border-color: #388E3C;
+}
+
+.ml-filter-input::placeholder {
+  color: #BDBDBD;
+  font-weight: 500;
+}
+
+.ml-filter-clear {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 10px;
+  background: #FFEBEE;
+  color: #C62828;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.ml-filter-clear:hover {
+  background: #FFCDD2;
+}
+
+.ml-filter-summary {
+  padding: 6px 20px 2px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #616161;
+}
+
+/* ══════════════════════════════════════════
+   LOG ENTRY ROWS
+   ══════════════════════════════════════════ */
+
+/* One log entry per medication dose event */
+.ml-entry {
+  border: 2px solid #E8F5E9;
+  border-radius: 14px;
+  background: #FAFFFE;
+  padding: 16px 18px;
+  margin-bottom: 10px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.ml-entry:last-child {
+  margin-bottom: 0;
+}
+
+.ml-entry:hover {
+  border-color: #A5D6A7;
+  box-shadow: 0 3px 10px rgba(56,142,60,0.10);
+}
+
+/* ── Top row: name + badge on left, date on right ── */
+
+.ml-entry-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.ml-entry-name-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ml-entry-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1B5E20;
+}
+
+/* Rescue / Controller badge */
+.ml-type-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.ml-type-badge.rescue {
+  background: #FFF3E0;
+  color: #E65100;
+}
+
+.ml-type-badge.controller {
+  background: #E3F2FD;
+  color: #1565C0;
+}
+
+/* Date/time string */
+.ml-entry-date {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9E9E9E;
+  white-space: nowrap;
+}
+
+/* ── Bottom row: doses + breathing before/after + trend ── */
+
+.ml-entry-stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+/* Each stat pill: label + value */
+.ml-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 14px;
+  background: #F1F8E9;
+  border-radius: 10px;
+  min-width: 64px;
+}
+
+.ml-stat-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #757575;
+  margin-bottom: 3px;
+}
+
+.ml-stat-value {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #212121;
+}
+
+/* Breathing stat: value coloured by severity */
+.ml-stat-value.breathing-0 { color: #C62828; }   /* Very Bad  — red */
+.ml-stat-value.breathing-1 { color: #E65100; }   /* Bad       — orange */
+.ml-stat-value.breathing-2 { color: #757575; }   /* Normal    — grey */
+.ml-stat-value.breathing-3 { color: #2E7D32; }   /* Good      — green */
+.ml-stat-value.breathing-4 { color: #1565C0; }   /* Very Good — blue */
+
+/* Trend arrow between before/after */
+.ml-trend {
+  font-size: 1.5rem;
+  font-weight: 900;
+  padding: 0 12px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.ml-trend.improved { color: #2E7D32; }
+.ml-trend.declined { color: #C62828; }
+.ml-trend.no-change { color: #9E9E9E; }
+
+/* ── Child name footer ── */
+
+.ml-entry-child {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #9E9E9E;
+  padding-top: 8px;
+  border-top: 1px solid #F1F8E9;
+}
+
+/* ══════════════════════════════════════════
+   EMPTY STATE
+   ══════════════════════════════════════════ */
+
+.ml-empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: #9E9E9E;
+}
+
+.ml-empty-icon {
+  font-size: 3.25rem;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.ml-empty-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #424242;
+  margin-bottom: 6px;
+}
+
+.ml-empty-sub {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #9E9E9E;
+}

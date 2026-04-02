@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Medication Inventory — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/medication-inventory.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Medication Inventory</h1>
+    <button class="header-action-btn" id="add-medication-btn" type="button">+ Add New</button>
+  </div>
+
+  <div class="inv-page" id="main-content" tabindex="-1">
+    <div class="inv-card">
+      <!-- JS renders the list (or empty state) here -->
+      <div id="med-list">
+        <div class="spinner"></div>
+      </div>
+
+      <!-- Show inactive medications toggle -->
+      <div class="toggle-wrapper" style="margin-top:var(--space-md);padding-top:var(--space-md);border-top:1px solid #E8EEF8;">
+        <label class="toggle">
+          <input type="checkbox" id="show-inactive-toggle" aria-label="Show inactive medications">
+          <span class="toggle-slider"></span>
+        </label>
+        <span style="font-size:0.875rem;font-weight:600;color:#757575;">Show inactive medications</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="medication-inventory.js" defer></script>
+</body>
+</html>

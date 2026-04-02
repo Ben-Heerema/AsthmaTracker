@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Sign Up — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/auth.css">
+  <style>
+    /* Signup: top-align since the form is tall, add bottom padding for fixed disclaimer */
+    .auth-page {
+      justify-content: flex-start;
+      padding-top: 32px;
+      padding-bottom: 48px;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="auth-page" id="main-content" tabindex="-1">
+
+    <div class="auth-card">
+      <h2>Create Account</h2>
+
+      <form id="signup-form" novalidate>
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email" class="required">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-input"
+            placeholder="your@email.com"
+            autocomplete="email"
+            required
+            aria-required="true"
+            aria-describedby="email-error"
+          >
+          <!-- Error message shown when validation fails -->
+          <div class="form-error" id="email-error" role="alert"></div>
+        </div>
+
+        <!-- Username Field -->
+        <div class="form-group">
+          <label for="username" class="required">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="form-input"
+            placeholder="Choose a username"
+            autocomplete="username"
+            required
+            aria-required="true"
+            aria-describedby="username-error"
+          >
+          <div class="form-error" id="username-error" role="alert"></div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password" class="required">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-input"
+            placeholder="8+ characters, letters & numbers"
+            autocomplete="new-password"
+            required
+            aria-required="true"
+            aria-describedby="password-error strength-text"
+          >
+          <!-- Password strength bar -->
+          <div class="password-strength">
+            <div class="password-strength-fill" id="strength-fill"></div>
+          </div>
+          <div class="form-hint" id="strength-text">Must be 8+ characters with letters and numbers</div>
+          <div class="form-error" id="password-error" role="alert"></div>
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="form-group">
+          <label for="confirm-password" class="required">Confirm Password</label>
+          <input
+            type="password"
+            id="confirm-password"
+            class="form-input"
+            placeholder="Repeat your password"
+            autocomplete="new-password"
+            required
+            aria-required="true"
+            aria-describedby="confirm-error"
+          >
+          <div class="form-error" id="confirm-error" role="alert"></div>
+        </div>
+
+        <!-- Account Type Selection -->
+        <div class="form-group">
+          <label class="required">Account Type</label>
+          <!--
+            id="role-selector" lets signup.js attach a click listener using event delegation.
+            CSP blocks inline onclick="selectRole('parent')" style handlers,
+            so we use data-role attributes and handle clicks in the JS file.
+          -->
+          <div class="role-selector" id="role-selector">
+            <button type="button" class="role-btn" data-role="parent" aria-label="Select Parent account type">
+              <span class="role-icon">👨‍👧</span>
+              Parent
+            </button>
+            <button type="button" class="role-btn" data-role="provider" aria-label="Select Provider account type">
+              <span class="role-icon">👨‍⚕️</span>
+              Provider
+            </button>
+          </div>
+          <div class="form-error" id="role-error" role="alert"></div>
+        </div>
+
+        <!-- General error message area -->
+        <div class="alert alert-danger hidden" id="general-error" role="alert"></div>
+
+        <!-- Buttons -->
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="submit-btn">
+          Create Account
+        </button>
+
+        <!-- id="back-btn" lets signup.js attach a click listener (CSP blocks inline onclick) -->
+        <button type="button" class="btn btn-ghost btn-block mt-md" id="back-btn">
+          Back
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="signup.js" defer></script>
+</body>
+</html>

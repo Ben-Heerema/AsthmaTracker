@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Daily Check-in — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/parent.css">
+  <link rel="stylesheet" href="../styles/daily-checkin.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-header">
+    <button class="header-back" id="back-btn" aria-label="Go back">←</button>
+    <h1>Daily Check-in</h1>
+    <div></div>
+  </div>
+
+  <div class="checkin-page" id="main-content" tabindex="-1">
+    <div class="checkin-card">
+
+      <div class="checkin-date" id="today-date"></div>
+
+      <!-- Child selector -->
+      <div class="child-row">
+        <label for="child-select">Child:</label>
+        <select id="child-select" aria-label="Select a child">
+          <option value="">— Select a child —</option>
+        </select>
+      </div>
+
+      <!-- Prompt -->
+      <div id="no-child-prompt" class="no-child-prompt">
+        <div class="p-icon">📋</div>
+        <div class="p-title">Select a child to begin</div>
+        <p>Choose a child above to fill in today's symptoms and triggers.</p>
+      </div>
+
+      <!-- Form -->
+      <div id="form-area" class="hidden">
+
+        <!-- Section A: Symptoms -->
+        <h2 class="sec-heading">🫁 Section A — Symptom Severity</h2>
+
+        <div class="sym-block">
+          <div class="sym-label">🌙 Night Waking</div>
+          <div class="sev-group" id="night-waking-group" role="group" aria-label="Night waking severity">
+            <button class="sev-btn" data-group="night-waking" data-value="none" aria-label="Night waking: None">✅ None</button>
+            <button class="sev-btn" data-group="night-waking" data-value="some" aria-label="Night waking: Some">😐 Some</button>
+            <button class="sev-btn" data-group="night-waking" data-value="a_lot" aria-label="Night waking: A lot">😟 A Lot</button>
+          </div>
+        </div>
+
+        <div class="sym-block">
+          <div class="sym-label">🏃 Activity Limits</div>
+          <div class="sev-group" id="activity-limits-group" role="group" aria-label="Activity limits severity">
+            <button class="sev-btn" data-group="activity-limits" data-value="none" aria-label="Activity limits: None">✅ None</button>
+            <button class="sev-btn" data-group="activity-limits" data-value="some" aria-label="Activity limits: Some">😐 Some</button>
+            <button class="sev-btn" data-group="activity-limits" data-value="a_lot" aria-label="Activity limits: A lot">😟 A Lot</button>
+          </div>
+        </div>
+
+        <div class="sym-block">
+          <div class="sym-label">😮‍💨 Coughing</div>
+          <div class="sev-group" id="coughing-group" role="group" aria-label="Coughing severity">
+            <button class="sev-btn" data-group="coughing" data-value="none" aria-label="Coughing: None">✅ None</button>
+            <button class="sev-btn" data-group="coughing" data-value="some" aria-label="Coughing: Some">😐 Some</button>
+            <button class="sev-btn" data-group="coughing" data-value="a_lot" aria-label="Coughing: A lot">😟 A Lot</button>
+          </div>
+        </div>
+
+        <div class="sym-block">
+          <div class="sym-label">〰️ Wheezing</div>
+          <div class="sev-group" id="wheezing-group" role="group" aria-label="Wheezing severity">
+            <button class="sev-btn" data-group="wheezing" data-value="none" aria-label="Wheezing: None">✅ None</button>
+            <button class="sev-btn" data-group="wheezing" data-value="some" aria-label="Wheezing: Some">😐 Some</button>
+            <button class="sev-btn" data-group="wheezing" data-value="a_lot" aria-label="Wheezing: A lot">😟 A Lot</button>
+          </div>
+        </div>
+
+        <!-- Section B: Triggers — toggle on LEFT, label on right -->
+        <h2 class="sec-heading">⚡ Section B — Triggers Today</h2>
+
+        <div class="trigger-row">
+          <label class="tog"><input type="checkbox" id="trigger-exercise" aria-labelledby="lbl-exercise"><span class="tog-track"></span></label>
+          <span class="trigger-row-label" id="lbl-exercise">🏃 Exercise or physical activity</span>
+        </div>
+        <div class="trigger-row">
+          <label class="tog"><input type="checkbox" id="trigger-cold-air" aria-labelledby="lbl-cold-air"><span class="tog-track"></span></label>
+          <span class="trigger-row-label" id="lbl-cold-air">🌬️ Cold or dry air</span>
+        </div>
+        <div class="trigger-row">
+          <label class="tog"><input type="checkbox" id="trigger-dust" aria-labelledby="lbl-dust"><span class="tog-track"></span></label>
+          <span class="trigger-row-label" id="lbl-dust">🌫️ Dust or dust mites</span>
+        </div>
+        <div class="trigger-row">
+          <label class="tog"><input type="checkbox" id="trigger-smoke" aria-labelledby="lbl-smoke"><span class="tog-track"></span></label>
+          <span class="trigger-row-label" id="lbl-smoke">🚬 Smoke or air pollution</span>
+        </div>
+        <div class="trigger-row">
+          <label class="tog"><input type="checkbox" id="trigger-illness" aria-labelledby="lbl-illness"><span class="tog-track"></span></label>
+          <span class="trigger-row-label" id="lbl-illness">🤧 Cold, flu or illness</span>
+        </div>
+        <div class="trigger-row">
+          <label class="tog"><input type="checkbox" id="trigger-strong-odors" aria-labelledby="lbl-strong-odors"><span class="tog-track"></span></label>
+          <span class="trigger-row-label" id="lbl-strong-odors">🌸 Strong odors or perfumes</span>
+        </div>
+
+        <div style="height:24px;"></div>
+
+        <div class="error-banner hidden" id="error-msg" role="alert">
+          ⚠️ Something went wrong — check-in could not be saved. Please try again.
+        </div>
+
+        <button class="btn btn-primary btn-block btn-lg" id="save-checkin-btn" type="button" disabled>
+          💾 Save Check-in
+        </button>
+
+      </div><!-- /form-area -->
+
+    </div><!-- /checkin-card -->
+  </div><!-- /checkin-page -->
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="daily-checkin.js" defer></script>
+</body>
+</html>

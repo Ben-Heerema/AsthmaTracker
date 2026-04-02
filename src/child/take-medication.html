@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Take Medication</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/take-medication.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Take Medication</h1>
+    <div></div>
+  </div>
+
+  <div class="tm-page" id="main-content" tabindex="-1">
+
+    <!-- ── Step 1: Select Medication ── -->
+    <div id="step-medication" class="tm-card">
+      <div class="tm-card-header">Step 1 — Which medication?</div>
+      <div class="tm-card-body">
+        <div id="med-list"><div class="spinner"></div></div>
+      </div>
+    </div>
+
+    <!-- ── Step 2: How many doses? ── -->
+    <div id="step-doses" class="tm-card hidden">
+      <div class="tm-card-header">Step 2 — How many doses?</div>
+      <div class="tm-card-body">
+        <div class="tm-doses-row">
+          <button class="tm-dose-btn" id="doses-minus-btn" type="button" aria-label="Decrease doses">−</button>
+          <div id="doses-display" class="tm-dose-number" aria-live="polite">1</div>
+          <button class="tm-dose-btn" id="doses-plus-btn" type="button" aria-label="Increase doses">+</button>
+        </div>
+        <div class="tm-dose-label">doses</div>
+        <button class="tm-btn-primary" id="go-to-breathing-btn" type="button">Next →</button>
+        <button class="tm-btn-ghost" id="back-to-medication-btn" type="button">← Change Medication</button>
+      </div>
+    </div>
+
+    <!-- ── Step 3: Breathing Before ── -->
+    <div id="step-before" class="tm-card hidden">
+      <div class="tm-card-header">Step 3 — How is your breathing NOW?</div>
+      <div class="tm-card-body">
+        <p class="tm-step-hint">Rate how you feel <strong>before</strong> taking your medication.</p>
+        <div class="tm-breathing-grid" id="before-options"></div>
+        <button class="tm-btn-ghost" id="back-to-doses-btn" type="button">← Back</button>
+      </div>
+    </div>
+
+    <!-- ── Step 4: Breathing After ── -->
+    <div id="step-after" class="tm-card hidden">
+      <div class="tm-card-header">Step 4 — How is your breathing NOW?</div>
+      <div class="tm-card-body">
+        <p class="tm-step-hint">Wait a few minutes for the medicine to work, then tell us how you feel <strong>after</strong>.</p>
+        <div class="tm-breathing-grid" id="after-options"></div>
+        <button class="tm-btn-ghost" id="back-to-before-btn" type="button">← Back</button>
+      </div>
+    </div>
+
+    <!-- ── Warning: breathing declined ── -->
+    <div id="decline-warning" class="tm-decline-warning hidden">
+      ⚠️ Your breathing doesn't seem better. Your parent has been notified. If you feel very unwell, press Emergency Services.
+    </div>
+
+    <!-- ── Success screen ── -->
+    <div id="success-screen" class="tm-success-card hidden">
+      <span class="tm-success-icon">✅</span>
+      <div class="tm-success-title">All done!</div>
+      <div class="tm-success-sub">Your medication has been logged successfully.</div>
+      <button class="tm-btn-primary" id="success-home-btn" type="button">🏠 Back to Home</button>
+    </div>
+
+  </div><!-- /tm-page -->
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="take-medication.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Add Badges</title>
+  <link rel="stylesheet" href="../styles/global.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="page-header">
+    <button type="button" class="header-back" id="back-btn" aria-label="Go back">←</button>
+    <h1>Add Badge</h1>
+    <div></div>
+  </div>
+  <div class="container" id="main-content" tabindex="-1">
+    <div class="child-selector">
+      <label for="child-select">Child:</label>
+      <select id="child-select" class="form-select">
+        <option value="">— Select a child —</option>
+      </select>
+    </div>
+    <form id="badge-form">
+      <div class="form-group">
+        <label for="badge-name" class="required">Badge Name</label>
+        <input type="text" id="badge-name" class="form-input" maxlength="100" placeholder="e.g. Breathing Champion" required aria-required="true">
+      </div>
+      <div class="form-group">
+        <label for="badge-desc" class="required">Badge Description</label>
+        <textarea id="badge-desc" class="form-textarea" maxlength="500" placeholder="Describe what this badge is for..." required aria-required="true"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="criteria-type" class="required">Award Criteria</label>
+        <select id="criteria-type" class="form-select" required aria-required="true">
+          <option value="technique_sessions">Inhaler Technique Sessions Completed</option>
+          <option value="controller_adherence">Months with Good Controller Adherence</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="criteria-value" class="required">Target Number</label>
+        <input type="number" id="criteria-value" class="form-input" min="1" placeholder="e.g. 10" required aria-required="true">
+        <div class="form-hint" id="criteria-hint">Number of sessions required</div>
+      </div>
+      <div class="alert alert-success hidden" id="success-msg" role="alert">Badge created!</div>
+      <div class="alert alert-danger hidden" id="error-msg" role="alert"></div>
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Create Badge</button>
+    </form>
+  </div>
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="add-badges.js" defer></script>
+</body>
+</html>

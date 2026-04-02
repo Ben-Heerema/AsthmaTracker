@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; media-src 'self'">
+  <title>Inhaler Technique</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/inhaler-technique.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Inhaler Technique</h1>
+    <div></div>
+  </div>
+
+  <div class="inh-page" id="main-content" tabindex="-1">
+
+    <!-- ── Screen 1: Type selector ── -->
+    <div id="type-selector" class="inh-selector-card">
+      <div class="inh-selector-title">Which inhaler are you using?</div>
+      <div class="inh-selector-sub">Choose the type that matches yours</div>
+
+      <button class="inh-type-btn" id="start-regular-btn" type="button">
+        <span class="inh-type-icon" aria-hidden="true">💨</span>
+        <div>
+          <div class="inh-type-label">Regular MDI Inhaler</div>
+          <div class="inh-type-desc">Standard press-and-breathe inhaler</div>
+        </div>
+      </button>
+
+      <button class="inh-type-btn" id="start-mask-spacer-btn" type="button">
+        <span class="inh-type-icon" aria-hidden="true">😷</span>
+        <div>
+          <div class="inh-type-label">Mask &amp; Spacer</div>
+          <div class="inh-type-desc">Inhaler attached to a spacer with a face mask</div>
+        </div>
+      </button>
+
+      <div class="inh-video-divider">
+        <span class="inh-video-divider-line"></span>
+        <span class="inh-video-divider-text">or watch a video</span>
+        <span class="inh-video-divider-line"></span>
+      </div>
+
+      <button class="inh-video-btn" id="video-regular-btn" type="button">
+        <span class="inh-video-btn-icon" aria-hidden="true">▶</span>
+        <div>
+          <div class="inh-video-btn-label">Watch: Regular Inhaler</div>
+          <div class="inh-video-btn-desc">See the full technique demonstrated</div>
+        </div>
+      </button>
+
+      <button class="inh-video-btn" id="video-mask-spacer-btn" type="button">
+        <span class="inh-video-btn-icon" aria-hidden="true">▶</span>
+        <div>
+          <div class="inh-video-btn-label">Watch: Mask &amp; Spacer</div>
+          <div class="inh-video-btn-desc">See the spacer technique demonstrated</div>
+        </div>
+      </button>
+    </div>
+
+    <!-- ── Video Player Modal ── -->
+    <div id="video-modal" class="inh-video-modal hidden">
+      <div class="inh-video-modal-backdrop" id="video-modal-backdrop"></div>
+      <div class="inh-video-modal-content">
+        <div class="inh-video-modal-header">
+          <h2 class="inh-video-modal-title" id="video-modal-title">Inhaler Technique</h2>
+          <button class="inh-video-modal-close" id="video-modal-close" type="button" aria-label="Close video">&times;</button>
+        </div>
+        <div class="inh-video-player-wrapper">
+          <div class="inh-video-disclaimer-banner" role="alert">
+            <span class="inh-video-disclaimer-icon" aria-hidden="true">&#x26A0;&#xFE0F;</span>
+            <span>THIS VIDEO IS A PLACEHOLDER, DIDN'T INCLUDE VIDEO TO MINIMIZE FILE SIZE</span>
+          </div>
+          <video id="technique-video" class="inh-video-player" playsinline preload="metadata">
+            <source id="video-source-mp4" src="" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <!-- Fallback placeholder shown if video file can't load -->
+          <div id="video-placeholder" class="inh-video-placeholder hidden">
+            <div class="inh-video-placeholder-icon" aria-hidden="true">🎬</div>
+            <div class="inh-video-placeholder-text">Placeholder Video</div>
+            <div class="inh-video-placeholder-sub">Video not included to minimize file size</div>
+          </div>
+        </div>
+        <!-- Custom video controls bar (below the video, not overlaid) -->
+        <div class="inh-video-controls" id="video-controls">
+          <button class="inh-vc-play-btn" id="vc-play-btn" type="button" title="Play" aria-label="Play video">▶</button>
+          <span class="inh-vc-time" id="vc-time-current">0:00</span>
+          <div class="inh-vc-progress" id="vc-progress-bar" role="slider" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="inh-vc-progress-fill" id="vc-progress-fill"></div>
+          </div>
+          <span class="inh-vc-time" id="vc-time-duration">0:00</span>
+          <button class="inh-vc-mute-btn" id="vc-mute-btn" type="button" title="Mute" aria-label="Toggle mute">🔊</button>
+          <input class="inh-vc-volume" id="vc-volume" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+        </div>
+        <div class="inh-video-modal-footer">
+          <button class="inh-btn-next" id="video-to-steps-btn" type="button">
+            Practice the Steps →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Screen 2: Step-by-step display ── -->
+    <div id="step-display" class="inh-step-card hidden">
+      <!-- Animated progress bar across the top -->
+      <div class="inh-progress-bar">
+        <div class="inh-progress-fill" id="step-progress"></div>
+      </div>
+
+      <div class="inh-step-inner">
+        <div class="inh-step-counter" id="step-counter"></div>
+        <div class="inh-step-icon" id="step-icon"></div>
+        <div class="inh-step-instruction" id="step-instruction"></div>
+
+        <!-- Timer widget — shown only on steps that need one (injected by JS) -->
+        <div id="step-timer" class="inh-timer-widget hidden"></div>
+
+        <div class="inh-step-nav">
+          <button class="inh-btn-prev" id="prev-step-btn" type="button">← Back</button>
+          <button class="inh-btn-next" id="next-step-btn" type="button">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Screen 3: Completion ── -->
+    <div id="completion-screen" class="inh-complete-card hidden">
+      <span class="inh-complete-emoji" aria-hidden="true">🎉</span>
+      <div class="inh-complete-title">Great job!</div>
+      <div class="inh-complete-sub">You completed the inhaler technique practice! Keep it up! 💪</div>
+      <button class="inh-btn-home" id="completion-home-btn" type="button">
+        🏠 Back to Home
+      </button>
+    </div>
+
+  </div><!-- /inh-page -->
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="inhaler-technique.js" defer></script>
+</body>
+</html>

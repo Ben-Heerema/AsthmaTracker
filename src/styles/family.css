@@ -1,0 +1,378 @@
+/**
+ * family.css — Styles for the Family page
+ * Follows the same expandable-bar pattern as medication-inventory.css
+ */
+
+body {
+  background: linear-gradient(160deg, #E3F2FD 0%, #E0F7FA 100%);
+  margin: 0;
+  padding: 0;
+}
+
+.page-header {
+  background: linear-gradient(90deg, #1565C0, #0288D1);
+}
+
+/* Add Child button — full-width below the child list */
+.add-child-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 20px;
+  margin-top: 16px;
+  border: 2px dashed #90CAF9;
+  border-radius: 12px;
+  background: #F5FAFF;
+  color: #1565C0;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+.add-child-btn:hover {
+  background: #E3F2FD;
+  border-color: #42A5F5;
+}
+.add-child-btn:focus-visible {
+  outline: 2px solid #1976D2;
+  outline-offset: 2px;
+}
+
+/* Outer wrapper */
+.family-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 28px 20px 100px;
+  min-height: calc(100vh - 60px);
+  box-sizing: border-box;
+}
+
+/* White card */
+.family-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.13), 0 4px 10px rgba(0,0,0,0.09);
+  padding: 28px 28px 32px;
+  width: 580px;
+  flex-shrink: 0;
+}
+
+/* Section count label */
+.list-section-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #1565C0;
+  margin-bottom: 12px;
+}
+
+/* ── Child bar ── */
+.child-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #F8FAFF;
+  border: 2px solid #E8EEF8;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+.child-bar:hover {
+  border-color: #90CAF9;
+  background: #EEF6FF;
+}
+.child-bar:focus-visible {
+  outline: 2px solid #1976D2;
+  outline-offset: 2px;
+}
+.child-bar.selected {
+  border-color: #2196F3;
+  background: #E3F2FD;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0;
+}
+
+/* Left: icon + name + age badge */
+.child-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.child-bar-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #E3F2FD;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.375rem;
+  flex-shrink: 0;
+}
+.child-bar-name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #212121;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.child-age-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #E8F5E9;
+  color: #2E7D32;
+  flex-shrink: 0;
+}
+
+/* Right: chevron */
+.child-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.child-bar-chevron {
+  font-size: 0.75rem;
+  color: #9E9E9E;
+  transition: transform 0.2s;
+}
+.child-bar.selected .child-bar-chevron { transform: rotate(180deg); }
+
+/* ── Detail panel ── */
+.child-detail-panel {
+  background: white;
+  border: 2px solid #2196F3;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.child-detail-body {
+  padding: 16px 18px;
+}
+
+/* Stats grid */
+.child-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.child-stat {
+  background: #F8FAFF;
+  border: 1px solid #DDEEFF;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.child-stat.full-width {
+  grid-column: 1 / -1;
+}
+.child-stat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #9E9E9E;
+  margin-bottom: 4px;
+}
+.child-stat-value {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #212121;
+}
+
+/* Notes in detail panel */
+.child-notes {
+  font-size: 0.8125rem;
+  color: #757575;
+  font-style: italic;
+  background: #F8FAFF;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+/* Action row */
+.child-action-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* Edit button */
+.child-edit-btn {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #BBDEFB;
+  border-radius: 8px;
+  background: white;
+  color: #1565C0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+.child-edit-btn:hover {
+  background: #2196F3;
+  border-color: #2196F3;
+  color: white;
+}
+
+/* Login button */
+.child-login-btn {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #B2DFDB;
+  border-radius: 8px;
+  background: white;
+  color: #00796B;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+.child-login-btn:hover {
+  background: #009688;
+  border-color: #009688;
+  color: white;
+}
+
+/* Empty state */
+.empty-block {
+  text-align: center;
+  padding: 40px 16px;
+  color: #757575;
+}
+.empty-icon  { font-size: 3rem; margin-bottom: 12px; }
+.empty-title { font-size: 1.125rem; font-weight: 700; color: #212121; margin-bottom: 8px; }
+.empty-sub   { font-size: 0.875rem; margin-bottom: 20px; line-height: 1.5; }
+
+/* ── Edit form within the detail panel ── */
+.child-edit-form {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #E8EEF8;
+}
+.child-edit-form .form-group {
+  margin-bottom: 12px;
+}
+.child-edit-form label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #757575;
+  margin-bottom: 4px;
+  display: block;
+}
+.child-edit-form .form-input,
+.child-edit-form .form-textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-family: 'Nunito', sans-serif;
+  box-sizing: border-box;
+}
+.child-edit-form .form-input:focus,
+.child-edit-form .form-textarea:focus {
+  border-color: #2196F3;
+  outline: none;
+}
+.child-edit-form .form-textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Icon picker within edit form */
+.edit-icon-picker {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.edit-icon-option {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 3px solid #E0E0E0;
+  background: #F5F8FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  padding: 0;
+  line-height: 1;
+}
+.edit-icon-option:hover {
+  border-color: #90CAF9;
+  transform: scale(1.1);
+}
+.edit-icon-option:focus-visible {
+  outline: 2px solid #1976D2;
+  outline-offset: 2px;
+}
+.edit-icon-option.selected {
+  border-color: #2196F3;
+  background: #E3F2FD;
+  box-shadow: 0 0 0 3px rgba(33,150,243,0.25);
+}
+
+.edit-action-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+.edit-save-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #2196F3;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: background 0.15s;
+}
+.edit-save-btn:hover { background: #1976D2; }
+.edit-save-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.edit-cancel-btn {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  background: white;
+  color: #757575;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+.edit-cancel-btn:hover {
+  border-color: #BDBDBD;
+  background: #F5F5F5;
+}

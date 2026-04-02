@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Controller Schedule — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/controller-schedule.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Controller Schedule</h1>
+    <div></div>
+  </div>
+
+  <div class="sched-page" id="main-content" tabindex="-1">
+    <div class="sched-card">
+
+      <div class="sched-card-title"><span aria-hidden="true">📅</span> Medication Days</div>
+      <div class="sched-card-subtitle">Select which days the child should take their controller medication.</div>
+
+      <!-- Section label -->
+      <div class="sec-label">Days</div>
+
+      <!-- Day tiles — 2 columns, big clickable boxes -->
+      <div class="day-grid">
+        <label class="day-tile"><input type="checkbox" id="sched-mon"> Monday</label>
+        <label class="day-tile"><input type="checkbox" id="sched-tue"> Tuesday</label>
+        <label class="day-tile"><input type="checkbox" id="sched-wed"> Wednesday</label>
+        <label class="day-tile"><input type="checkbox" id="sched-thu"> Thursday</label>
+        <label class="day-tile"><input type="checkbox" id="sched-fri"> Friday</label>
+        <label class="day-tile"><input type="checkbox" id="sched-sat"> Saturday</label>
+        <label class="day-tile full-width"><input type="checkbox" id="sched-sun"> Sunday</label>
+      </div>
+
+      <!-- Visual gap -->
+      <div class="sched-divider"></div>
+
+      <!-- Section label -->
+      <div class="sec-label">Doses</div>
+
+      <!-- Doses per day -->
+      <div class="doses-row">
+        <span class="doses-label"><span aria-hidden="true">💊</span> Doses per day</span>
+        <input type="number" id="doses-per-day" class="doses-input"
+               min="1" max="10" value="1" aria-label="Number of doses per day">
+      </div>
+
+      <!-- Success banner -->
+      <div class="success-banner hidden" id="sched-success" role="alert">
+        ✅ Schedule saved!
+      </div>
+
+      <button class="btn btn-primary btn-block btn-lg" id="save-schedule-btn" type="button">
+        💾 Save Schedule
+      </button>
+
+    </div><!-- /sched-card -->
+  </div><!-- /sched-page -->
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="controller-schedule.js" defer></script>
+</body>
+</html>

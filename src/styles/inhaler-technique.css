@@ -1,0 +1,882 @@
+/**
+ * inhaler-technique.css — Inhaler Technique Tutorial Page (Child)
+ *
+ * Three screens shown in sequence:
+ *   1. Type selector  — pick Regular MDI or Mask & Spacer
+ *   2. Step display   — one step at a time, big icon + instruction
+ *   3. Completion     — celebration screen
+ */
+
+/* ── Header colour (blue/teal matching the grid button) ── */
+.page-header {
+  background: linear-gradient(135deg, #2196F3, #00BCD4);
+}
+
+/* ── Shared page wrapper ── */
+.inh-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px 40px;
+  min-height: calc(100vh - 64px);  /* 64px = header height */
+}
+
+/* ══════════════════════════════════════════
+   SCREEN 1 — Type selector
+   ══════════════════════════════════════════ */
+
+.inh-selector-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.inh-selector-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #212121;
+  margin-bottom: 8px;
+}
+
+.inh-selector-sub {
+  font-size: 0.875rem;
+  color: #757575;
+  margin-bottom: 28px;
+}
+
+.inh-type-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 18px 20px;
+  border: 2px solid #E3F2FD;
+  border-radius: 14px;
+  background: #F8FCFF;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.18s;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.inh-type-btn:last-child {
+  margin-bottom: 0;
+}
+
+.inh-type-btn:hover,
+.inh-type-btn:focus-visible {
+  border-color: #2196F3;
+  background: #E3F2FD;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(33,150,243,0.18);
+}
+.inh-type-btn:focus-visible {
+  outline: 3px solid #2196F3;
+  outline-offset: 2px;
+}
+
+.inh-type-icon {
+  font-size: 2.25rem;
+  flex-shrink: 0;
+  width: 48px;
+  text-align: center;
+}
+
+.inh-type-label {
+  font-size: 1.0625rem;
+  font-weight: 800;
+  color: #1565C0;
+}
+
+.inh-type-desc {
+  font-size: 0.8125rem;
+  color: #757575;
+  margin-top: 2px;
+}
+
+/* ══════════════════════════════════════════
+   SCREEN 2 — Step display
+   ══════════════════════════════════════════ */
+
+.inh-step-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  width: 100%;
+  max-width: 460px;
+  overflow: hidden;
+}
+
+/* Progress bar strip at the very top */
+.inh-progress-bar {
+  height: 6px;
+  background: #E3F2FD;
+  width: 100%;
+}
+
+.inh-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2196F3, #00BCD4);
+  border-radius: 0 3px 3px 0;
+  transition: width 0.35s ease;
+}
+
+.inh-step-inner {
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Fixed-height content area so nav buttons don't jump between steps.
+     The instruction + timer area is wrapped in a flex-grow zone. */
+  min-height: 420px;
+}
+
+/* Wrapper for the variable-height middle section (icon + instruction + timer).
+   Grows to fill the fixed area so the nav buttons stay pinned to the bottom. */
+.inh-step-inner .inh-step-counter,
+.inh-step-inner .inh-step-icon,
+.inh-step-inner .inh-step-instruction {
+  flex-shrink: 0;
+}
+
+/* Push the nav row to the bottom of the card */
+.inh-step-nav {
+  margin-top: auto;
+}
+
+/* Step counter e.g. "Step 3 of 10" */
+.inh-step-counter {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #90CAF9;
+  margin-bottom: 20px;
+}
+
+/* Big emoji icon in a coloured circle */
+.inh-step-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E3F2FD, #B3E5FC);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px rgba(33,150,243,0.20);
+}
+
+/* Instruction text */
+.inh-step-instruction {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #212121;
+  line-height: 1.55;
+  max-width: 340px;
+  margin-bottom: 32px;
+  white-space: pre-line;    /* render \n as line breaks */
+}
+
+/* Prev / Next button row — pinned to bottom via margin-top:auto on .inh-step-inner */
+.inh-step-nav {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.inh-btn-prev {
+  flex: 1;
+  padding: 13px;
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  background: transparent;
+  color: #757575;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+
+.inh-btn-prev:hover,
+.inh-btn-prev:focus-visible {
+  border-color: #BDBDBD;
+  color: #424242;
+}
+.inh-btn-prev:focus-visible {
+  outline: 3px solid #757575;
+  outline-offset: 2px;
+}
+
+.inh-btn-prev.invisible {
+  visibility: hidden;
+}
+
+.inh-btn-next {
+  flex: 2;
+  padding: 13px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2196F3, #00BCD4);
+  color: white;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: opacity 0.15s, transform 0.15s;
+  box-shadow: 0 4px 12px rgba(33,150,243,0.30);
+}
+
+.inh-btn-next:hover,
+.inh-btn-next:focus-visible {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+.inh-btn-next:focus-visible {
+  outline: 3px solid #1976D2;
+  outline-offset: 2px;
+}
+
+/* On the final step the next button turns green */
+.inh-btn-next.inh-btn-finish {
+  background: linear-gradient(135deg, #43A047, #00897B);
+  box-shadow: 0 4px 12px rgba(67,160,71,0.30);
+}
+
+/* ══════════════════════════════════════════
+   SCREEN 3 — Completion
+   ══════════════════════════════════════════ */
+
+.inh-complete-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  padding: 40px 28px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.inh-complete-emoji {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.inh-complete-title {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #212121;
+  margin-bottom: 10px;
+}
+
+.inh-complete-sub {
+  font-size: 1rem;
+  color: #757575;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+.inh-btn-home {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2196F3, #00BCD4);
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  box-shadow: 0 4px 12px rgba(33,150,243,0.30);
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.inh-btn-home:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+/* ══════════════════════════════════════════
+   TIMER WIDGET — shown on steps that need one
+   ══════════════════════════════════════════ */
+
+/*
+ * Container injected between the instruction text
+ * and the Prev/Next navigation row.
+ */
+.inh-timer-widget {
+  width: 100%;
+  max-width: 320px;
+  background: #F0F8FF;
+  border: 2px solid #B3D9FF;
+  border-radius: 16px;
+  padding: 18px 20px 16px;
+  margin-bottom: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Label above the big number, e.g. "⏱ Hold your breath" */
+.inh-timer-label {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #1565C0;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Big countdown number, e.g. "10s" */
+.inh-timer-display {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #1565C0;
+  line-height: 1;
+  font-family: 'Nunito', sans-serif;
+  transition: color 0.3s;
+  min-width: 100px;
+}
+
+/* While ticking — slightly lighter blue */
+.inh-timer-display.inh-timer-running {
+  color: #1976D2;
+}
+
+/* ≤ 3 seconds left — amber warning */
+.inh-timer-display.inh-timer-urgent {
+  color: #E65100;
+  animation: inh-pulse 0.6s infinite alternate;
+}
+
+/* Finished — green tick */
+.inh-timer-display.inh-timer-done {
+  font-size: 2rem;
+  color: #2E7D32;
+  animation: none;
+}
+
+@keyframes inh-pulse {
+  from { transform: scale(1);    opacity: 1; }
+  to   { transform: scale(1.06); opacity: 0.85; }
+}
+
+/* Row holding Start + Skip buttons */
+.inh-timer-btns {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ▶ Start button */
+.inh-timer-btn-start {
+  flex: 1;
+  padding: 11px 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2196F3, #00BCD4);
+  color: white;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: opacity 0.15s, transform 0.15s;
+  box-shadow: 0 3px 10px rgba(33,150,243,0.30);
+}
+
+.inh-timer-btn-start:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.inh-timer-btn-start:disabled {
+  opacity: 0.55;
+  cursor: default;
+  transform: none;
+}
+
+/* Skip › button */
+.inh-timer-btn-skip {
+  padding: 11px 14px;
+  border: 2px solid #BBDEFB;
+  border-radius: 10px;
+  background: transparent;
+  color: #1565C0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+
+.inh-timer-btn-skip:hover {
+  background: #E3F2FD;
+  border-color: #90CAF9;
+}
+
+/* ══════════════════════════════════════════
+   BREATH COUNTER — tap-to-count variant
+   ══════════════════════════════════════════ */
+
+/*
+ * Large tappable circle. The child taps it once per breath.
+ * Shows current count / total.
+ */
+.inh-counter-tap-btn {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px solid #90CAF9;
+  background: linear-gradient(135deg, #E3F2FD, #B3E5FC);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 4px 14px rgba(33,150,243,0.20);
+  padding: 0;
+  gap: 0;
+}
+
+.inh-counter-tap-btn:hover:not(:disabled) {
+  box-shadow: 0 6px 18px rgba(33,150,243,0.30);
+  transform: scale(1.03);
+}
+
+/* The big count number inside the circle, e.g. "3" */
+.inh-counter-num {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #1565C0;
+  line-height: 1;
+}
+
+/* "/ 6" next to the number */
+.inh-counter-of {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #5C8FC4;
+  margin-top: 2px;
+}
+
+/* "Tap each breath" hint — sits below the circle as a standalone label */
+.inh-counter-hint {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #78909C;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Short pulse animation when child taps */
+.inh-counter-tap-btn.inh-counter-pulse {
+  animation: inh-tap-pulse 0.25s ease-out;
+}
+
+@keyframes inh-tap-pulse {
+  0%   { transform: scale(1);    background: linear-gradient(135deg, #E3F2FD, #B3E5FC); }
+  50%  { transform: scale(1.10); background: linear-gradient(135deg, #BBDEFB, #81D4FA); }
+  100% { transform: scale(1);    background: linear-gradient(135deg, #E3F2FD, #B3E5FC); }
+}
+
+/* When all breaths are done the circle turns green */
+.inh-counter-tap-btn.inh-counter-done {
+  background: linear-gradient(135deg, #C8E6C9, #A5D6A7);
+  border-color: #66BB6A;
+  cursor: default;
+}
+
+.inh-counter-tap-btn.inh-counter-done .inh-counter-num {
+  color: #2E7D32;
+}
+
+/* ══════════════════════════════════════════
+   LOCKED NEXT BUTTON state
+   ══════════════════════════════════════════ */
+
+/*
+ * While a timer is running, the Next button is disabled
+ * and visually dimmed so the child knows to wait for
+ * the timer to finish (or tap Skip).
+ */
+.inh-btn-next.inh-btn-next-locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ══════════════════════════════════════════
+   VIDEO SECTION — "or watch a video" divider + buttons
+   ══════════════════════════════════════════ */
+
+/* Divider with centered text */
+.inh-video-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 16px;
+  width: 100%;
+}
+
+.inh-video-divider-line {
+  flex: 1;
+  height: 1px;
+  background: #E0E0E0;
+}
+
+.inh-video-divider-text {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #9E9E9E;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+/* Video buttons — similar to type buttons but with a purple/violet accent */
+.inh-video-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 18px;
+  border: 2px solid #EDE7F6;
+  border-radius: 14px;
+  background: #F9F5FF;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.18s;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.inh-video-btn:last-child {
+  margin-bottom: 0;
+}
+
+.inh-video-btn:hover {
+  border-color: #7C4DFF;
+  background: #EDE7F6;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(124, 77, 255, 0.18);
+}
+
+.inh-video-btn-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7C4DFF, #B388FF);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(124, 77, 255, 0.25);
+}
+
+.inh-video-btn-label {
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: #5E35B1;
+}
+
+.inh-video-btn-desc {
+  font-size: 0.75rem;
+  color: #9575CD;
+  margin-top: 2px;
+}
+
+/* ══════════════════════════════════════════
+   VIDEO MODAL — Full-screen overlay player
+   ══════════════════════════════════════════ */
+
+.inh-video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.inh-video-modal.inh-video-modal-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* When hidden class is on, truly hide */
+.inh-video-modal.hidden {
+  display: none;
+}
+
+/* Semi-transparent dark backdrop */
+.inh-video-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+}
+
+/* Modal content card — sized large so the video is easy to see */
+.inh-video-modal-content {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.30);
+  width: 92%;
+  max-width: 820px;
+  max-height: 92vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.25s ease;
+}
+
+.inh-video-modal-open .inh-video-modal-content {
+  transform: translateY(0) scale(1);
+}
+
+/* Header row with title + close button */
+.inh-video-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.inh-video-modal-title {
+  font-size: 1.0625rem;
+  font-weight: 800;
+  color: #212121;
+  margin: 0;
+}
+
+.inh-video-modal-close {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: #F5F5F5;
+  color: #757575;
+  font-size: 1.375rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  font-family: 'Nunito', sans-serif;
+}
+
+.inh-video-modal-close:hover {
+  background: #E0E0E0;
+  color: #424242;
+}
+
+/* Video player wrapper */
+.inh-video-player-wrapper {
+  position: relative;
+  background: #000;
+  width: 100%;
+  /* 16:9 aspect ratio fallback */
+  min-height: 200px;
+}
+
+/* The actual HTML5 video element — no browser controls, we use our own below */
+.inh-video-player {
+  display: block;
+  width: 100%;
+  max-height: 65vh;
+  background: #000;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Large disclaimer banner — always visible inside the video modal */
+.inh-video-disclaimer-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #FF6B35, #E53E3E);
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.inh-video-disclaimer-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* Fallback placeholder (shown if video file fails to load) */
+.inh-video-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: white;
+  text-align: center;
+  min-height: 220px;
+}
+
+.inh-video-placeholder.hidden {
+  display: none;
+}
+
+.inh-video-placeholder-icon {
+  font-size: 3.5rem;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.inh-video-placeholder-text {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.inh-video-placeholder-sub {
+  font-size: 0.875rem;
+  color: #90CAF9;
+  opacity: 0.7;
+}
+
+/* ── Custom Video Controls Bar ──────────────────────────── */
+
+/* Container sitting below the video, not overlaid */
+.inh-video-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: #1a1a2e;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Play / Pause toggle */
+.inh-vc-play-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7C4DFF, #B388FF);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.12s, opacity 0.12s;
+  box-shadow: 0 2px 8px rgba(124, 77, 255, 0.35);
+}
+
+.inh-vc-play-btn:hover {
+  transform: scale(1.08);
+  opacity: 0.92;
+}
+
+/* Elapsed / duration timestamps */
+.inh-vc-time {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #B0BEC5;
+  font-family: 'Nunito', monospace;
+  min-width: 36px;
+  text-align: center;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* Progress / seek bar */
+.inh-vc-progress {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  min-width: 60px;
+}
+
+.inh-vc-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7C4DFF, #B388FF);
+  border-radius: 3px;
+  width: 0%;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* Mute / Unmute button */
+.inh-vc-mute-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.12s;
+}
+
+.inh-vc-mute-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Volume slider */
+.inh-vc-volume {
+  width: 70px;
+  height: 4px;
+  accent-color: #7C4DFF;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Footer with "Practice the Steps" button */
+.inh-video-modal-footer {
+  padding: 16px 20px 20px;
+  border-top: 1px solid #F0F0F0;
+}
+
+.inh-video-modal-footer .inh-btn-next {
+  width: 100%;
+  padding: 14px;
+  font-size: 0.9375rem;
+}

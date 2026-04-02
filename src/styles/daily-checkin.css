@@ -1,0 +1,255 @@
+/**
+ * daily-checkin.css — Styles for the Daily Check-in page
+ */
+
+body {
+  background: linear-gradient(160deg, #E3F2FD 0%, #E0F7FA 100%);
+  margin: 0;
+  padding: 0;
+}
+
+.page-header {
+  background: linear-gradient(90deg, #1565C0, #0288D1);
+}
+
+/* Outer wrapper — centres the card */
+.checkin-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 28px 20px 60px;
+  min-height: calc(100vh - 60px);
+  box-sizing: border-box;
+}
+
+/* White card */
+.checkin-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.13), 0 4px 10px rgba(0,0,0,0.09);
+  padding: 32px 36px 36px;
+  width: 560px;
+  flex-shrink: 0;
+}
+
+/* Today's date */
+.checkin-date {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #1565C0;
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+/* Child selector */
+.child-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #E3F2FD;
+  border: 2px solid #90CAF9;
+  border-radius: 10px;
+  padding: 11px 16px;
+  margin-bottom: 24px;
+}
+.child-row label {
+  font-weight: 700;
+  white-space: nowrap;
+  font-size: 0.9375rem;
+  color: #212121;
+}
+.child-row select {
+  flex: 1;
+  padding: 7px 11px;
+  border: 2px solid #2196F3;
+  border-radius: 6px;
+  font-size: 0.9375rem;
+  background: white;
+  color: #212121;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+}
+.child-row select:focus {
+  outline: none;
+  border-color: #1565C0;
+}
+
+/* Prompt when no child selected */
+.no-child-prompt {
+  text-align: center;
+  padding: 28px 0 8px;
+  color: #757575;
+}
+.no-child-prompt .p-icon {
+  font-size: 2.75rem;
+  margin-bottom: 10px;
+}
+.no-child-prompt .p-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #212121;
+  margin-bottom: 6px;
+}
+
+/* Section divider */
+.sec-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #1565C0;
+  margin: 22px 0 14px;
+}
+.sec-heading::before,
+.sec-heading::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: #BBDEFB;
+  border-radius: 2px;
+}
+
+/* Each symptom row — label on left, buttons on right */
+.sym-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #F8FAFF;
+  border: 1px solid #DDEEFF;
+  border-radius: 10px;
+  padding: 13px 16px;
+  margin-bottom: 8px;
+}
+.sym-block:last-of-type {
+  margin-bottom: 0;
+}
+.sym-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #212121;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Three severity buttons */
+.sev-group {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.sev-btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 2px solid #E0E0E0;
+  background: white;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #757575;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+  white-space: nowrap;
+  min-width: 68px;
+  text-align: center;
+}
+.sev-btn:hover,
+.sev-btn:focus-visible {
+  border-color: #2196F3;
+  color: #1565C0;
+  background: #EEF6FF;
+}
+.sev-btn:focus-visible {
+  outline: 3px solid #2196F3;
+  outline-offset: 2px;
+}
+.sev-btn[data-value="none"].selected {
+  background: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
+}
+.sev-btn[data-value="some"].selected {
+  background: #2196F3;
+  border-color: #2196F3;
+  color: white;
+}
+.sev-btn[data-value="a_lot"].selected {
+  background: #FF9800;
+  border-color: #FF9800;
+  color: white;
+}
+
+/* Trigger rows — toggle on RIGHT, label on left */
+.trigger-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 4px;
+  border-bottom: 1px solid #EEEEEE;
+}
+.trigger-row:last-child {
+  border-bottom: none;
+}
+.trigger-row-label {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #212121;
+}
+
+/* Toggle switch */
+.tog {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+}
+.tog input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+.tog-track {
+  position: absolute;
+  inset: 0;
+  background: #BDBDBD;
+  border-radius: 26px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.tog-track::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+.tog input:checked + .tog-track {
+  background: #2196F3;
+}
+.tog input:checked + .tog-track::before {
+  transform: translateX(22px);
+}
+
+/* Error banner */
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #FFEBEE;
+  border: 1px solid #EF9A9A;
+  border-radius: 8px;
+  padding: 13px 16px;
+  margin-bottom: 14px;
+  font-weight: 600;
+  color: #C62828;
+  font-size: 0.875rem;
+}

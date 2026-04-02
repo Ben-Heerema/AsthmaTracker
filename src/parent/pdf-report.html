@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Generate PDF Report</title>
+  <link rel="stylesheet" href="../styles/global.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="page-header">
+    <button type="button" class="header-back" id="back-btn" aria-label="Go back">←</button>
+    <h1>Generate PDF Report</h1>
+    <div></div>
+  </div>
+  <div class="container" id="main-content" tabindex="-1">
+    <div class="child-selector">
+      <label for="child-select">Child:</label>
+      <select id="child-select">
+        <option value="">— Select a child —</option>
+      </select>
+    </div>
+    <div id="form-area" class="hidden">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="start-date">Report Start Date</label>
+            <input type="date" id="start-date" class="form-input">
+            <div class="form-hint">Date is locked between 3 and 6 months ago for a comprehensive report</div>
+          </div>
+          <div class="alert alert-info">
+            The PDF will include: symptom history, PEF zone distribution, medication adherence rate,
+            trigger analysis, incident reports, and rescue medication logs.
+          </div>
+          <div class="alert alert-success hidden" id="success-msg" role="alert">PDF generated and opened successfully!</div>
+          <button type="button" class="btn btn-primary btn-block btn-lg" id="generate-btn">
+            📄 Generate &amp; Save PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <!-- Hidden canvases used by Chart.js to render charts for PDF export -->
+  <canvas id="chart-pef-trend" width="600" height="300" style="display:none;"></canvas>
+  <canvas id="chart-pef-zones" width="400" height="300" style="display:none;"></canvas>
+  <canvas id="chart-symptoms" width="600" height="300" style="display:none;"></canvas>
+
+  <script src="../../node_modules/chart.js/dist/chart.umd.js"></script>
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="pdf-report.js" defer></script>
+</body>
+</html>

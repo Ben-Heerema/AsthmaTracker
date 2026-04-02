@@ -1,0 +1,378 @@
+/**
+ * provider.css — Styles for Provider role screens
+ */
+
+/* Provider main page patient list */
+.patient-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.patient-list-item:hover {
+  background: var(--color-bg-secondary);
+}
+
+.patient-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-teal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--color-teal-dark);
+  flex-shrink: 0;
+}
+
+.patient-info .patient-name {
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+}
+
+.patient-info .patient-meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Patient action buttons grid */
+.patient-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+
+.patient-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  background: white;
+  border: 2px solid var(--color-teal-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: center;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+}
+
+.patient-action-btn:hover:not(:disabled) {
+  border-color: var(--color-teal);
+  background: var(--color-teal-light);
+}
+
+.patient-action-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.patient-action-btn .action-icon {
+  font-size: 1.75rem;
+}
+
+/* Sharing permission indicator */
+.sharing-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--color-green-light);
+  color: var(--color-green-dark);
+}
+
+.sharing-badge.denied {
+  background: var(--color-grey-light);
+  color: var(--color-grey-dark);
+}
+
+/* Add patient code input */
+.code-input-section {
+  background: var(--color-teal-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.code-input-section h3 {
+  margin-bottom: var(--space-md);
+  color: var(--color-teal-dark);
+}
+
+.code-input-row {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.code-input-row input {
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ── Patient View — styled sections ────────────────────── */
+
+/* Patient info grid */
+.pv-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm) var(--space-lg);
+}
+
+.pv-info-item {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-sm) 0;
+}
+
+.pv-info-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.pv-info-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-secondary);
+  margin-bottom: 2px;
+}
+
+.pv-info-value {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.pv-info-notes {
+  grid-column: 1 / -1;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-xs);
+}
+
+/* PEF table */
+.pv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.pv-table thead th {
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  font-weight: 600;
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-secondary);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.pv-table tbody td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pv-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.pv-table tbody tr:hover {
+  background: var(--color-bg-secondary);
+}
+
+/* Adherence display */
+.pv-adherence {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-md) 0;
+}
+
+.pv-adherence-pct {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.pv-adherence-detail {
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Trigger bar */
+.pv-trigger-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pv-trigger-row:last-child {
+  border-bottom: none;
+}
+
+.pv-trigger-name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 500;
+}
+
+.pv-trigger-count {
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+}
+
+/* Rescue log entries */
+.pv-rescue-entry {
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pv-rescue-entry:last-child {
+  border-bottom: none;
+}
+
+.pv-rescue-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-xs);
+}
+
+.pv-rescue-name {
+  font-weight: 600;
+  font-size: var(--font-size-base);
+}
+
+.pv-rescue-doses {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.pv-rescue-time {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.pv-rescue-breathing {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+}
+
+.pv-breathing-tag {
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  background: var(--color-bg-secondary);
+}
+
+.pv-breathing-arrow {
+  color: var(--color-text-secondary);
+  font-weight: 700;
+}
+
+/* Incident entries */
+.pv-incident {
+  border-left: 4px solid var(--color-danger);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  background: #FEF2F2;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.pv-incident:last-child {
+  margin-bottom: 0;
+}
+
+.pv-incident-time {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.pv-incident-flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
+
+.pv-incident-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.pv-incident-pef {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.pv-incident-notes {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-xs);
+}
+
+/* Symptom severity badges in table */
+.pv-symptom-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.pv-symptom-badge.none    { background: #D1FAE5; color: #065F46; }
+.pv-symptom-badge.some    { background: #FEF3C7; color: #92400E; }
+.pv-symptom-badge.a_lot   { background: #FEE2E2; color: #991B1B; }
+
+/* Empty state for sections */
+.pv-empty {
+  text-align: center;
+  padding: var(--space-lg);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}

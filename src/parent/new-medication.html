@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Medication</title>
+  <link rel="stylesheet" href="../styles/global.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="page-header">
+    <button type="button" class="header-back" id="back-btn" aria-label="Go back">&#8592;</button>
+    <h1 id="page-title">Add Medication</h1>
+    <div></div>
+  </div>
+  <div class="container" id="main-content" tabindex="-1">
+    <form id="med-form" novalidate>
+      <div class="form-group">
+        <label for="child-select" class="required">Child</label>
+        <select id="child-select" class="form-select" required aria-required="true">
+          <option value="">&#8212; Select child &#8212;</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="med-name" class="required">Medication Name</label>
+        <input type="text" id="med-name" class="form-input" maxlength="50" placeholder="e.g. Albuterol" required aria-required="true">
+        <div class="form-hint"><span id="name-count">0</span>/50 characters</div>
+      </div>
+      <div class="form-group">
+        <label for="purchase-date" class="required">Purchase Date</label>
+        <input type="date" id="purchase-date" class="form-input" required aria-required="true">
+      </div>
+      <div class="form-group">
+        <label for="expiry-date" class="required">Expiration Date</label>
+        <input type="date" id="expiry-date" class="form-input" required aria-required="true">
+      </div>
+      <div class="form-group">
+        <label for="doses-remaining" class="required">Doses Remaining</label>
+        <input type="number" id="doses-remaining" class="form-input" min="0" max="900" value="200" placeholder="0-900" required aria-required="true">
+      </div>
+      <div class="form-group">
+        <label>Is this a Rescue Medication?</label>
+        <div style="display:flex;gap:12px;margin-top:8px">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+            <input type="radio" name="is-rescue" value="1" id="rescue-yes"> Yes (Rescue)
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+            <input type="radio" name="is-rescue" value="0" id="rescue-no" checked> No (Controller)
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="med-notes">Additional Notes (optional)</label>
+        <textarea id="med-notes" class="form-textarea" maxlength="500" placeholder="Storage instructions, special notes..."></textarea>
+        <div class="form-hint"><span id="notes-count">0</span>/500 characters</div>
+      </div>
+      <div class="alert alert-danger hidden" id="form-error" role="alert"></div>
+      <button type="submit" class="btn btn-primary btn-block btn-lg" id="save-btn">Save Medication</button>
+    </form>
+  </div>
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="new-medication.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+/**
+ * incident-logs.css — Incident / Emergency Triage Logs Page
+ *
+ * Styled to match medication-logs.css: card with gradient header,
+ * entry cards with danger-coloured borders, and consistent typography.
+ */
+
+/* ── Page background ────────────────────────────────────── */
+
+body {
+  background: linear-gradient(160deg, #FFEBEE 0%, #FFF3E0 100%);
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+
+.page-header {
+  background: linear-gradient(135deg, #C62828, #E65100);
+}
+
+/* ── Page wrapper ───────────────────────────────────────── */
+
+.il-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 20px 60px;
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+}
+
+/* ── Outer white card ───────────────────────────────────── */
+
+.il-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.11), 0 4px 10px rgba(0,0,0,0.07);
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+}
+
+/* Coloured header strip inside the card */
+.il-card-header {
+  background: linear-gradient(135deg, #C62828, #E65100);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.il-card-title {
+  color: white;
+  font-size: 1.0625rem;
+  font-weight: 800;
+}
+
+.il-card-sub {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.il-card-body {
+  padding: 16px 20px 20px;
+}
+
+/* ══════════════════════════════════════════
+   FILTER BAR
+   ══════════════════════════════════════════ */
+
+.il-filter-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 14px 20px 10px;
+  flex-wrap: wrap;
+}
+
+.il-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.il-filter-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #757575;
+}
+
+.il-filter-input {
+  padding: 8px 12px;
+  border: 2px solid #FFCDD2;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #212121;
+  background: #FFFAFA;
+  outline: none;
+  transition: border-color 0.15s;
+  font-family: 'Nunito', sans-serif;
+}
+
+.il-filter-input:focus {
+  border-color: #C62828;
+}
+
+.il-filter-clear {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 10px;
+  background: #FFEBEE;
+  color: #C62828;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+  font-family: 'Nunito', sans-serif;
+}
+
+.il-filter-clear:hover {
+  background: #FFCDD2;
+}
+
+.il-filter-summary {
+  padding: 6px 20px 2px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #616161;
+}
+
+/* ══════════════════════════════════════════
+   INCIDENT ENTRY CARDS
+   ══════════════════════════════════════════ */
+
+.il-entry {
+  border: 2px solid #FFCDD2;
+  border-left: 5px solid #F44336;
+  border-radius: 14px;
+  background: #FFFAFA;
+  padding: 16px 18px;
+  margin-bottom: 10px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.il-entry:last-child {
+  margin-bottom: 0;
+}
+
+.il-entry:hover {
+  border-color: #EF9A9A;
+  box-shadow: 0 3px 10px rgba(198,40,40,0.10);
+}
+
+.il-entry.moderate {
+  border-left-color: #FF9800;
+  border-color: #FFE0B2;
+  background: #FFFDF7;
+}
+
+.il-entry.moderate:hover {
+  border-color: #FFCC80;
+  box-shadow: 0 3px 10px rgba(230,81,0,0.10);
+}
+
+/* ── Top row: child name + severity on left, date on right ── */
+
+.il-entry-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.il-entry-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #212121;
+}
+
+.il-severity-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-left: 8px;
+}
+
+.il-severity-badge.critical {
+  background: #FFEBEE;
+  color: #C62828;
+}
+
+.il-severity-badge.moderate {
+  background: #FFF3E0;
+  color: #E65100;
+}
+
+.il-entry-date {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9E9E9E;
+  white-space: nowrap;
+}
+
+/* ── Danger flags ── */
+
+.il-flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.il-flag {
+  display: inline-block;
+  background: #FFEBEE;
+  color: #C62828;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ── PEF + notes ── */
+
+.il-pef {
+  font-size: 0.875rem;
+  margin-bottom: 6px;
+  color: #424242;
+}
+
+.il-notes {
+  font-size: 0.875rem;
+  color: #757575;
+  font-style: italic;
+  background: #FFF8F0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* ── View log button ── */
+
+.il-log-btn {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #FFCDD2;
+  border-radius: 8px;
+  background: white;
+  color: #C62828;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.15s;
+}
+
+.il-log-btn:hover {
+  background: #C62828;
+  border-color: #C62828;
+  color: white;
+}
+
+.il-log-btn:focus-visible {
+  outline: 2px solid #C62828;
+  outline-offset: 2px;
+}
+
+/* ══════════════════════════════════════════
+   EMPTY STATE
+   ══════════════════════════════════════════ */
+
+.il-empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: #9E9E9E;
+}
+
+.il-empty-icon {
+  font-size: 3.25rem;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.il-empty-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #424242;
+  margin-bottom: 6px;
+}
+
+.il-empty-sub {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #9E9E9E;
+}
+
+/* ══════════════════════════════════════════
+   LOG MODAL (kept from original)
+   ══════════════════════════════════════════ */
+
+.log-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.log-modal-overlay.log-modal-visible {
+  opacity: 1;
+}
+
+.log-modal {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 540px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+.log-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #C62828, #E65100);
+  color: white;
+}
+
+.log-modal-title {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.log-modal-subtitle {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.75);
+  margin-top: 2px;
+}
+
+.log-modal-close {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  font-size: 1.125rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.log-modal-close:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+.log-modal-body {
+  padding: 16px 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.log-modal-pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'Nunito', monospace;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: #424242;
+  margin: 0;
+}

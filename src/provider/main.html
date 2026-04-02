@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Provider Dashboard</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/provider.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="page-header">
+    <div>
+      <h1>My Patients</h1>
+      <div id="username-display" style="font-size:var(--font-size-sm);opacity:0.85;"></div>
+    </div>
+    <button class="btn" style="background:none;border:1px solid white;color:white;font-size:var(--font-size-sm)"
+            id="logout-btn">Log Out</button>
+  </div>
+
+  <!-- Add patient via access code -->
+  <div class="container" id="main-content" tabindex="-1">
+    <div class="code-input-section">
+      <h2>Add a Patient</h2>
+      <p class="text-muted" style="font-size:var(--font-size-sm);margin-bottom:12px">
+        Ask the patient's parent to generate an access code in their app, then enter it below.
+      </p>
+      <div class="code-input-row">
+        <input type="text" id="access-code-input" class="form-input"
+               placeholder="ENTER CODE" maxlength="8"
+               aria-label="Patient access code"
+               style="text-transform:uppercase;letter-spacing:3px;font-size:1.25rem;font-weight:700;text-align:center">
+        <button class="btn btn-primary" id="activate-code-btn">Add Patient</button>
+      </div>
+      <div class="alert alert-danger hidden mt-sm" id="code-error" role="alert"></div>
+      <div class="alert alert-success hidden mt-sm" id="code-success" role="alert">Patient added successfully!</div>
+    </div>
+
+    <!-- Patient list -->
+    <h2 class="section-title" style="margin-top:var(--space-lg)">My Patients</h2>
+    <div id="patient-list"><div class="spinner"></div></div>
+    <div id="pagination-controls" class="pagination-controls hidden" aria-live="polite">
+      <span id="pagination-counter" class="pagination-counter"></span>
+      <button type="button" class="btn btn-secondary" id="show-more-btn">Show More</button>
+    </div>
+  </div>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <nav class="nav-bar">
+    <button class="nav-bar-item active" aria-current="page"><span aria-hidden="true">👨‍⚕️</span><span>Patients</span></button>
+    <button class="nav-bar-item" id="nav-settings"><span aria-hidden="true">⚙️</span><span>Settings</span></button>
+  </nav>
+
+  <script src="../shared/toast.js" defer></script>
+  <script src="../shared/session-guard.js" defer></script>
+  <script src="main.js" defer></script>
+</body>
+</html>

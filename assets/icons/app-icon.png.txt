@@ -1,0 +1,4 @@
+PLACEHOLDER: Replace this file with a real PNG app icon (256x256 or 512x512 pixels).
+The icon should be named app-icon.png for Linux builds.
+For Windows builds, create app-icon.ico
+For Mac builds, create app-icon.icns

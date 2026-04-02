@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Emergency Services — Asthma Tracker</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/emergency.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ── Header ── -->
+  <div class="page-header">
+    <button class="header-back" id="back-btn" type="button" aria-label="Go back">←</button>
+    <h1>Emergency Services</h1>
+    <div></div>
+  </div>
+
+  <!-- ── Always-visible 911 banner (cannot be dismissed) ── -->
+  <div class="emg-911-banner">
+    <div class="emg-911-label">⚠️ If in immediate danger — CALL 911 NOW ⚠️</div>
+    <div class="emg-911-number">9-1-1</div>
+  </div>
+
+  <!-- ── 5-Step Triage Flow ── -->
+  <div class="emg-page" id="main-content" tabindex="-1">
+
+    <!-- ════════════════════════════════════════════
+         Step 1: Who is having an emergency?
+         ════════════════════════════════════════════ -->
+    <div id="step-1" class="emg-step">
+      <div class="emg-step-header">Step 1 — Who is having an emergency?</div>
+      <div class="emg-step-body">
+
+        <div id="child-selector-area">
+          <div class="emg-child-row">
+            <label for="child-select">Child:</label>
+            <select id="child-select" aria-label="Select child">
+              <option value="">— Select a child —</option>
+            </select>
+          </div>
+        </div>
+        <div id="step1-error" class="emg-notes-error hidden">Please select a child before continuing.</div>
+
+        <button class="emg-btn-continue" id="step1-continue-btn" type="button">
+          Continue →
+        </button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         Step 2: Check for danger signs
+         ════════════════════════════════════════════ -->
+    <div id="step-2" class="emg-step hidden">
+      <div class="emg-step-header">Step 2 — Check for Danger Signs</div>
+      <div class="emg-step-body">
+
+        <p class="emg-intro">Please check and answer honestly:</p>
+
+        <div class="emg-question">
+          <div class="emg-question-label">Can the child speak in full sentences?</div>
+          <div class="emg-yn-group">
+            <button class="emg-yn-btn" id="sentences-yes" type="button">✅ Yes</button>
+            <button class="emg-yn-btn" id="sentences-no"  type="button">❌ No</button>
+          </div>
+        </div>
+
+        <div class="emg-question">
+          <div class="emg-question-label">Is the chest retracting (skin pulling in between ribs)?</div>
+          <div class="emg-yn-group">
+            <button class="emg-yn-btn" id="chest-yes" type="button">✅ Yes</button>
+            <button class="emg-yn-btn" id="chest-no"  type="button">❌ No</button>
+          </div>
+        </div>
+
+        <div class="emg-question">
+          <div class="emg-question-label">Are the lips or fingernails blue or grey?</div>
+          <div class="emg-yn-group">
+            <button class="emg-yn-btn" id="blue-yes" type="button">✅ Yes</button>
+            <button class="emg-yn-btn" id="blue-no"  type="button">❌ No</button>
+          </div>
+        </div>
+
+        <div id="call-911-now" class="emg-critical-box hidden">
+          <div class="emg-critical-title">⚠️ CALL 911 IMMEDIATELY ⚠️</div>
+          <div class="emg-critical-number">9-1-1</div>
+          <div class="emg-critical-sub">These signs indicate a life-threatening emergency</div>
+        </div>
+
+        <div id="step2-error" class="emg-notes-error hidden">Please answer all three questions before continuing.</div>
+        <button class="emg-btn-continue" id="step2-continue-btn" type="button">Continue →</button>
+        <button class="emg-btn-back"    id="step2-back-btn"    type="button">← Back</button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         Step 3: Peak Flow reading (optional)
+         ════════════════════════════════════════════ -->
+    <div id="step-3" class="emg-step hidden">
+      <div class="emg-step-header">Step 3 — Peak Flow Reading (Optional)</div>
+      <div class="emg-step-body">
+
+        <p class="emg-pef-hint">
+          If you have a peak flow meter available, enter the reading below.
+          Skip this step if you do not have one.
+        </p>
+
+        <div class="emg-pef-row">
+          <input type="number" id="emergency-pef" class="emg-pef-input"
+                 placeholder="—" min="0" max="900" step="1"
+                 aria-label="Peak flow reading">
+          <span class="emg-pef-unit">L/min</span>
+        </div>
+
+        <button class="emg-btn-continue" id="step3-continue-btn" type="button">Continue →</button>
+        <button class="emg-btn-back"    id="step3-back-btn"    type="button">← Back</button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         Step 4: Administer rescue medication + 20-min timer
+         ════════════════════════════════════════════ -->
+    <div id="step-4" class="emg-step hidden">
+      <div class="emg-step-header">Step 4 — Administer Rescue Medication</div>
+      <div class="emg-step-body">
+
+        <div class="emg-protocol-box">
+          <strong>Standard Protocol:</strong> Give rescue inhaler (e.g. Albuterol) —
+          typically 2–4 puffs every 20 minutes for up to 1 hour.
+        </div>
+
+        <!-- JS populates this with rescue meds from the DB -->
+        <div id="rescue-med-list">
+          <div class="spinner"></div>
+        </div>
+
+        <!-- ── 20-minute countdown timer ── -->
+        <div class="emg-timer-card">
+          <div class="emg-timer-label">⏱ Time since last dose</div>
+          <div class="emg-timer-display" id="timer-display">20:00</div>
+          <div class="emg-timer-dose-row">
+            <span class="emg-timer-dose-label">Dose</span>
+            <span id="timer-dose-count" class="emg-timer-dose-num">1 / 3</span>
+          </div>
+          <div class="emg-timer-btns">
+            <button class="emg-timer-btn-start" id="timer-start-btn" type="button">▶ Start Timer</button>
+            <button class="emg-timer-btn-reset" id="timer-reset-btn" type="button">↺ Next Dose</button>
+          </div>
+          <!-- Worsening symptoms — skip timer entirely -->
+          <button class="emg-timer-btn-worsen" id="timer-worsen-btn" type="button">
+            ⚠️ Symptoms worsening — Skip &amp; Call 911
+          </button>
+        </div>
+
+        <!-- 911 callout shown when "worsening" is tapped -->
+        <div id="timer-911-callout" class="emg-critical-box hidden">
+          <div class="emg-critical-title">⚠️ CALL 911 IMMEDIATELY ⚠️</div>
+          <div class="emg-critical-number">9-1-1</div>
+          <div class="emg-critical-sub">Do not wait — symptoms are worsening</div>
+        </div>
+
+        <!-- Incident notes -->
+        <label class="emg-notes-label" for="notes">📝 Notes about this incident</label>
+        <textarea id="notes" class="emg-textarea"
+                  placeholder="Describe symptoms, what happened, any actions taken..."
+                  aria-label="Incident notes"></textarea>
+        <div id="notes-error" class="emg-notes-error hidden">Please add notes about this incident before continuing.</div>
+
+        <button class="emg-btn-continue" id="step4-continue-btn" type="button" style="margin-top:12px">Continue →</button>
+        <button class="emg-btn-back"    id="step4-back-btn"    type="button">← Back</button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         Step 5: Guidance & next steps
+         ════════════════════════════════════════════ -->
+    <div id="step-5" class="emg-step hidden">
+      <div class="emg-step-header">Step 5 — Guidance &amp; Next Steps</div>
+      <div class="emg-step-body">
+
+        <div id="guidance-text" class="emg-guidance-text"></div>
+
+        <div class="emg-final-911">
+          <div class="emg-final-911-label">If symptoms worsen or do not improve:</div>
+          <div class="emg-final-911-number">9-1-1</div>
+        </div>
+
+        <button class="emg-btn-finish" id="save-finish-btn" type="button">
+          💾 Save Report &amp; Exit
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /emg-page -->
+
+  <!-- Bottom nav bar (role-aware — JS sets correct targets) -->
+  <nav class="nav-bar" id="bottom-nav">
+    <button type="button" class="nav-bar-item" id="nav-home">
+      <span aria-hidden="true">🏠</span><span>Home</span>
+    </button>
+    <button type="button" class="nav-bar-item active nav-bar-emergency" id="nav-emergency" aria-current="page">
+      <span aria-hidden="true">🚨</span><span>Emergency</span>
+    </button>
+    <button type="button" class="nav-bar-item" id="nav-settings">
+      <span aria-hidden="true">⚙️</span><span>Settings</span>
+    </button>
+  </nav>
+
+  <div class="medical-disclaimer">
+    This app does not provide medical advice. Always consult a qualified healthcare professional for medical guidance.
+  </div>
+
+  <script src="toast.js" defer></script>
+  <script src="session-guard.js" defer></script>
+  <script src="emergency.js" defer></script>
+</body>
+</html>
